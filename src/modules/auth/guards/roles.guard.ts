@@ -5,8 +5,8 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { ROLES_KEY } from '../decorators/roles.decorator.js';
-import { UserRole } from '../../../common/enums/index.js';
+import { ROLES_KEY } from '@common/decorators/index.js';
+import { UserRole } from '@common/enums/index.js';
 
 /**
  * Roles Guard — kiểm tra user có role phù hợp không.

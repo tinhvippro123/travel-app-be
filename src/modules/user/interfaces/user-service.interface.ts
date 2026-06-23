@@ -1,4 +1,4 @@
-import { IBaseService } from '../../../common/interfaces/base-service.interface.js';
+import { IBaseService } from '@common/interfaces/base-service.interface.js';
 import { User } from '../entities/user.entity.js';
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';

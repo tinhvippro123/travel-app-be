@@ -12,7 +12,7 @@ import {
 import { ITourService } from '../interfaces/tour-service.interface.js';
 import { CreateTourDto } from '../dto/create-tour.dto.js';
 import { UpdateTourDto } from '../dto/update-tour.dto.js';
-import { TourStatus } from '../../../common/enums/index.js';
+import { TourStatus } from '@common/enums/index.js';
 
 @Controller('tours')
 export class TourController {

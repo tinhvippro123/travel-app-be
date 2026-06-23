@@ -1,6 +1,6 @@
-import { IBaseRepository } from '../../../common/interfaces/base-repository.interface.js';
+import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
 import { Tour } from '../entities/tour.entity.js';
-import { TourStatus } from '../../../common/enums/index.js';
+import { TourStatus } from '@common/enums/index.js';
 
 /**
  * Interface cho Tour Repository.

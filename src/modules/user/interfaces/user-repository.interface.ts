@@ -1,4 +1,4 @@
-import { IBaseRepository } from '../../../common/interfaces/base-repository.interface.js';
+import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
 import { User } from '../entities/user.entity.js';
 
 /**

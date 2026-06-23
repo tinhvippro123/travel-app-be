@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
 import { Tour } from '../entities/tour.entity.js';
 import { ITourRepository } from '../interfaces/tour-repository.interface.js';
-import { TourStatus } from '../../../common/enums/index.js';
+import { TourStatus } from '@common/enums/index.js';
 
 @Injectable()
 export class TourRepository implements ITourRepository {
