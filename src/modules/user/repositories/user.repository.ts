@@ -20,7 +20,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: string): Promise<User | null> {
-    return this.userRepo.findOneBy({ id } as FindOptionsWhere<User>);
+    return this.userRepo.findOneBy({ id });
   }
 
   async findOneBy(where: FindOptionsWhere<User>): Promise<User | null> {
@@ -28,7 +28,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.userRepo.findOneBy({ email } as FindOptionsWhere<User>);
+    return this.userRepo.findOneBy({ email });
   }
 
   async findByEmailWithPassword(email: string): Promise<User | null> {
@@ -45,7 +45,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async update(id: string, data: DeepPartial<User>): Promise<User> {
-    await this.userRepo.update(id, data as any);
+    await this.userRepo.update(id, data);
     return this.findById(id) as Promise<User>;
   }
 

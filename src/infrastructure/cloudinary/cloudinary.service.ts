@@ -23,10 +23,13 @@ export class CloudinaryService {
     return new Promise((resolve, reject) => {
       const upload = cloudinary.uploader.upload_stream(
         { folder },
-        (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+        (
+          error: UploadApiErrorResponse | undefined,
+          result: UploadApiResponse | undefined,
+        ) => {
           if (error) {
             this.logger.error(`Upload failed: ${error.message}`);
-            reject(error);
+            reject(new Error(error.message));
           } else {
             resolve(result!);
           }

@@ -14,9 +14,9 @@ async function bootstrap() {
   // Global validation pipe — tự động validate DTO
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,           // Loại bỏ field không có trong DTO
+      whitelist: true, // Loại bỏ field không có trong DTO
       forbidNonWhitelisted: true, // Throw nếu gửi field không hợp lệ
-      transform: true,           // Tự động transform type (string → number, etc.)
+      transform: true, // Tự động transform type (string → number, etc.)
     }),
   );
 
@@ -37,4 +37,7 @@ async function bootstrap() {
   logger.log(`🚀 Application is running on: http://localhost:${port}/api/v1`);
 }
 
-bootstrap();
+bootstrap().catch((err) => {
+  console.error('Failed to start application:', err);
+  process.exit(1);
+});

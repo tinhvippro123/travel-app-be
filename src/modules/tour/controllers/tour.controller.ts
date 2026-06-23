@@ -44,10 +44,7 @@ export class TourController {
   }
 
   @Put(':id')
-  update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() dto: UpdateTourDto,
-  ) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateTourDto) {
     return this.tourService.update(id, dto);
   }
 

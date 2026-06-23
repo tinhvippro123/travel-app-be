@@ -7,6 +7,10 @@ import { UpdateUserDto } from '../dto/update-user.dto.js';
  * Interface cho User Service.
  * Extends IBaseService (CRUD chung) và thêm method riêng cho User domain.
  */
-export abstract class IUserService extends IBaseService<User, CreateUserDto, UpdateUserDto> {
+export abstract class IUserService extends IBaseService<
+  User,
+  CreateUserDto,
+  UpdateUserDto
+> {
   abstract findByEmail(email: string): Promise<User>;
 }

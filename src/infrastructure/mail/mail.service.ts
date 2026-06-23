@@ -38,7 +38,10 @@ export class MailService {
       });
       this.logger.log(`Email sent to ${to}`);
     } catch (error) {
-      this.logger.error(`Failed to send email to ${to}`, (error as Error).stack);
+      this.logger.error(
+        `Failed to send email to ${to}`,
+        (error as Error).stack,
+      );
       throw error;
     }
   }

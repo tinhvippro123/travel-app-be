@@ -7,7 +7,11 @@ import { TourStatus } from '../../../common/enums/index.js';
 /**
  * Interface cho Tour Service.
  */
-export abstract class ITourService extends IBaseService<Tour, CreateTourDto, UpdateTourDto> {
+export abstract class ITourService extends IBaseService<
+  Tour,
+  CreateTourDto,
+  UpdateTourDto
+> {
   abstract findByStatus(status: TourStatus): Promise<Tour[]>;
 
   abstract findByDestination(destination: string): Promise<Tour[]>;
