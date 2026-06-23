@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
-import { AbstractEntity } from '../../../common/entities/base.entity.js';
-import { UserRole } from '../../../common/enums/index.js';
+import { AbstractEntity } from '@common/entities/base.entity.js';
+import { UserRole } from '@common/enums/index.js';
 
 @Entity('users')
 export class User extends AbstractEntity {

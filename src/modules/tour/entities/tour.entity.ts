@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
-import { AbstractEntity } from '../../../common/entities/base.entity.js';
-import { TourStatus } from '../../../common/enums/index.js';
+import { AbstractEntity } from '@common/entities/base.entity.js';
+import { TourStatus } from '@common/enums/index.js';
 
 @Entity('tours')
 export class Tour extends AbstractEntity {

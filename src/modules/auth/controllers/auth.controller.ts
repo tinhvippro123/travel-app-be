@@ -9,7 +9,7 @@ import {
 import { AuthService } from '../services/auth.service.js';
 import { LoginDto } from '../dto/login.dto.js';
 import { RegisterDto } from '../dto/register.dto.js';
-import { Public } from '../decorators/public.decorator.js';
+import { Public } from '@common/decorators/index.js';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard.js';
 
 @Controller('auth')

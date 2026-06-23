@@ -4,7 +4,7 @@ import { CreateTourDto } from '../dto/create-tour.dto.js';
 import { UpdateTourDto } from '../dto/update-tour.dto.js';
 import { ITourService } from '../interfaces/tour-service.interface.js';
 import { ITourRepository } from '../interfaces/tour-repository.interface.js';
-import { TourStatus } from '../../../common/enums/index.js';
+import { TourStatus } from '@common/enums/index.js';
 
 @Injectable()
 export class TourService implements ITourService {

@@ -7,7 +7,7 @@ import {
   IsInt,
   Min,
 } from 'class-validator';
-import { TourStatus } from '../../../common/enums/index.js';
+import { TourStatus } from '@common/enums/index.js';
 
 export class UpdateTourDto {
   @IsOptional()

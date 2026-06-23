@@ -1,8 +1,8 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { AbstractEntity } from '../../../common/entities/base.entity.js';
-import { BookingStatus } from '../../../common/enums/index.js';
-import { User } from '../../user/entities/user.entity.js';
-import { Tour } from '../../tour/entities/tour.entity.js';
+import { AbstractEntity } from '@common/entities/base.entity.js';
+import { BookingStatus } from '@common/enums/index.js';
+import { User } from '@modules/user/entities/user.entity.js';
+import { Tour } from '@modules/tour/entities/tour.entity.js';
 
 @Entity('bookings')
 export class Booking extends AbstractEntity {
