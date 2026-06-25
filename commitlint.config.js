@@ -24,7 +24,7 @@ export default {
       [
         'user',
         'auth',
-        'tour',
+        'place',
         'booking',
         'common',
         'infra',
