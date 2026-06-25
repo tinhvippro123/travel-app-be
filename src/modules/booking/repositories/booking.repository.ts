@@ -12,37 +12,39 @@ export class BookingRepository implements IBookingRepository {
   ) {}
 
   async findAll(): Promise<Booking[]> {
-    return this.bookingRepo.find({ relations: { user: true, tour: true } });
+    return this.bookingRepo.find({ relations: { user: true, place: true } });
   }
 
   async findById(id: string): Promise<Booking | null> {
-    return this.bookingRepo.findOne({ where: { id } });
+    return this.bookingRepo.findOne({
+      where: { id },
+      relations: { user: true, place: true },
+    });
   }
 
   async findByIdWithRelations(id: string): Promise<Booking | null> {
     return this.bookingRepo.findOne({
       where: { id },
-      relations: { user: true, tour: true },
+      relations: { user: true, place: true },
     });
-  }
-
-  async findOneBy(where: FindOptionsWhere<Booking>): Promise<Booking | null> {
-    return this.bookingRepo.findOne({ where });
   }
 
   async findByUserId(userId: string): Promise<Booking[]> {
     return this.bookingRepo.find({
       where: { userId },
-      relations: { tour: true },
-      order: { createdAt: 'DESC' },
+      relations: { place: true },
     });
   }
 
-  async findByTourId(tourId: string): Promise<Booking[]> {
+  async findByPlaceId(placeId: string): Promise<Booking[]> {
     return this.bookingRepo.find({
-      where: { tourId },
+      where: { placeId },
       relations: { user: true },
     });
+  }
+
+  async findOneBy(where: FindOptionsWhere<Booking>): Promise<Booking | null> {
+    return this.bookingRepo.findOne({ where });
   }
 
   async create(data: DeepPartial<Booking>): Promise<Booking> {
@@ -52,7 +54,7 @@ export class BookingRepository implements IBookingRepository {
 
   async update(id: string, data: DeepPartial<Booking>): Promise<Booking> {
     await this.bookingRepo.update(id, data);
-    return this.findByIdWithRelations(id) as Promise<Booking>;
+    return this.findById(id) as Promise<Booking>;
   }
 
   async softDelete(id: string): Promise<void> {
