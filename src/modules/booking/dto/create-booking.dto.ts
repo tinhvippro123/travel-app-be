@@ -9,7 +9,7 @@ import {
 
 export class CreateBookingDto {
   @IsUUID()
-  tourId: string;
+  placeId: string;
 
   @IsInt()
   @Min(1)

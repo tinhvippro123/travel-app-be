@@ -7,9 +7,9 @@ import {
   IsInt,
   Min,
 } from 'class-validator';
-import { TourStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums/index.js';
 
-export class CreateTourDto {
+export class CreatePlaceDto {
   @IsString()
   title: string;
 
@@ -39,8 +39,8 @@ export class CreateTourDto {
   departureLocation: string;
 
   @IsOptional()
-  @IsEnum(TourStatus)
-  status?: TourStatus;
+  @IsEnum(PlaceStatus)
+  status?: PlaceStatus;
 
   @IsOptional()
   @IsDateString()

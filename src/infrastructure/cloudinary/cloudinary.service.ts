@@ -14,7 +14,7 @@ export class CloudinaryService {
   /**
    * Upload file buffer lên Cloudinary.
    * @param file - Express.Multer.File
-   * @param folder - Folder trên Cloudinary (vd: 'tours', 'avatars')
+   * @param folder - Folder trên Cloudinary (vd: 'places', 'avatars')
    */
   async uploadFile(
     file: Express.Multer.File,

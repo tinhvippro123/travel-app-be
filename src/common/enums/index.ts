@@ -10,8 +10,8 @@ export enum BookingStatus {
   COMPLETED = 'completed',
 }
 
-export enum TourStatus {
+export enum PlaceStatus {
   DRAFT = 'draft',
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived',
 }

@@ -11,7 +11,7 @@ import { MailModule } from './infrastructure/mail/mail.module.js';
 // Feature modules
 import { UserModule } from './modules/user/user.module.js';
 import { AuthModule } from './modules/auth/auth.module.js';
-import { TourModule } from './modules/tour/tour.module.js';
+import { PlaceModule } from './modules/place/place.module.js';
 import { BookingModule } from './modules/booking/booking.module.js';
 
 @Module({
@@ -32,7 +32,7 @@ import { BookingModule } from './modules/booking/booking.module.js';
     // ===== Feature Modules =====
     UserModule,
     AuthModule,
-    TourModule,
+    PlaceModule,
     BookingModule,
   ],
 })

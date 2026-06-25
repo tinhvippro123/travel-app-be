@@ -1,9 +1,9 @@
 import { Entity, Column } from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity.js';
-import { TourStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums/index.js';
 
-@Entity('tours')
-export class Tour extends AbstractEntity {
+@Entity('places')
+export class Place extends AbstractEntity {
   @Column()
   title: string;
 
@@ -40,8 +40,8 @@ export class Tour extends AbstractEntity {
   @Column('simple-array', { nullable: true })
   images?: string[];
 
-  @Column({ type: 'enum', enum: TourStatus, default: TourStatus.DRAFT })
-  status: TourStatus;
+  @Column({ type: 'enum', enum: PlaceStatus, default: PlaceStatus.DRAFT })
+  status: PlaceStatus;
 
   @Column({ name: 'start_date', type: 'timestamp', nullable: true })
   startDate?: Date;

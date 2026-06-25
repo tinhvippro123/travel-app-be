@@ -4,13 +4,13 @@ import { CreateBookingDto } from '../dto/create-booking.dto.js';
 import { UpdateBookingDto } from '../dto/update-booking.dto.js';
 import { IBookingService } from '../interfaces/booking-service.interface.js';
 import { IBookingRepository } from '../interfaces/booking-repository.interface.js';
-import { ITourService } from '../../tour/interfaces/tour-service.interface.js';
+import { IPlaceService } from '../../place/interfaces/place-service.interface.js';
 
 @Injectable()
 export class BookingService implements IBookingService {
   constructor(
     private readonly bookingRepository: IBookingRepository,
-    private readonly tourService: ITourService,
+    private readonly placeService: IPlaceService,
   ) {}
 
   async findAll(): Promise<Booking[]> {
@@ -29,25 +29,30 @@ export class BookingService implements IBookingService {
     return this.bookingRepository.findByUserId(userId);
   }
 
-  /**
-   * Tạo booking cho user (userId lấy từ JWT token).
-   * Tự động tính totalPrice = tour.price * numberOfParticipants.
-   */
   async createForUser(userId: string, dto: CreateBookingDto): Promise<Booking> {
-    const tour = await this.tourService.findById(dto.tourId);
+    // 1. Kiểm tra Place tồn tại không
+    const place = await this.placeService.findById(dto.placeId);
 
-    const price = tour.discountPrice ?? tour.price;
-    const totalPrice = Number(price) * dto.numberOfParticipants;
+    // 2. Tính giá tiền
+    const price = place.discountPrice ?? place.price;
+    const totalPrice = price * dto.numberOfParticipants;
 
+    // 3. Tạo booking
     return this.bookingRepository.create({
-      ...dto,
       userId,
+      placeId: dto.placeId,
+      numberOfParticipants: dto.numberOfParticipants,
       totalPrice,
+      contactPhone: dto.contactPhone,
+      contactEmail: dto.contactEmail,
+      note: dto.note,
     });
   }
 
-  async create(dto: CreateBookingDto): Promise<Booking> {
-    return this.bookingRepository.create(dto);
+  // Admin / Staff create
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  create(_dto: CreateBookingDto): Promise<Booking> {
+    throw new Error('Method not implemented. Use createForUser instead.');
   }
 
   async update(id: string, dto: UpdateBookingDto): Promise<Booking> {
