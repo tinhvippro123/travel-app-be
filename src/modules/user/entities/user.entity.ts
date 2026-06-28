@@ -1,7 +1,8 @@
-import { Entity, Column, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToOne, OneToMany } from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity.js';
 import { Role } from './role.entity.js';
 import { LocalAccount } from './local-account.entity.js';
+import { Session } from '../../auth/entities/session.entity.js';
 
 @Entity('users')
 export class User extends AbstractEntity {
@@ -23,4 +24,7 @@ export class User extends AbstractEntity {
 
   @OneToOne(() => LocalAccount, localAccount => localAccount.user)
   localAccount: LocalAccount;
+
+  @OneToMany(() => Session, session => session.user)
+  sessions: Session[];
 }

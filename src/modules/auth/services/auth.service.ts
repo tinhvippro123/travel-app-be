@@ -9,6 +9,7 @@ import { User } from '../../user/entities/user.entity.js';
 import { LocalAccount } from '../../user/entities/local-account.entity.js';
 import { LoginDto } from '../dto/login.dto.js';
 import { RegisterDto } from '../dto/register.dto.js';
+import { Session } from '../entities/session.entity.js';
 import type { JwtPayload } from '../strategies/jwt.strategy.js';
 
 @Injectable()
@@ -38,12 +39,15 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const isPasswordValid = await bcrypt.compare(dto.password, localAccount.passwordHash);
+    const isPasswordValid = await bcrypt.compare(
+      dto.password,
+      localAccount.passwordHash,
+    );
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    return this.generateToken(localAccount.user);
+    return await this.generateToken(localAccount.user);
   }
 
   /**
@@ -53,30 +57,58 @@ export class AuthService {
     const user = await this.userService.registerNewUser(dto);
     // Cần query lại để lấy role nếu registerNewUser chưa gán populate đầy đủ
     const populatedUser = await this.userService.findById(user.id);
-    return this.generateToken(populatedUser);
+    return await this.generateToken(populatedUser);
   }
 
-  /**
-   * Lấy profile user hiện tại từ JWT payload.
-   */
   async getProfile(userId: string) {
     return this.userService.findById(userId);
   }
 
   /**
-   * Tạo JWT token từ user entity.
+   * Đăng xuất — revoke session hiện tại.
    */
-  private generateToken(user: User) {
-    const roleKey = user.role?.key || 'USER';
+  async logout(token: string) {
+    const crypto = await import('crypto');
+    const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
     
+    await this.dataSource.manager.update(Session, 
+      { tokenHash: tokenHash, status: 'ACTIVE' },
+      { status: 'REVOKED', revokedAt: new Date() }
+    );
+  }
+
+  /**
+   * Tạo JWT token từ user entity và lưu vào database.
+   */
+  private async generateToken(user: User) {
+    const roleKey = user.role?.key || 'USER';
+
     const payload: JwtPayload = {
       sub: user.id,
       email: user.email,
-      role: roleKey as any,
+      role: roleKey,
     };
 
+    const token = this.jwtService.sign(payload);
+    
+    // Hash JWT bằng SHA256 thay vì bcrypt để có thể tra cứu khi logout/validate
+    const crypto = await import('crypto');
+    const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
+    
+    // Tính toán thời gian hết hạn (ví dụ +1 ngày)
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + 1);
+
+    const session = this.dataSource.manager.create(Session, {
+      user: user,
+      tokenHash: tokenHash,
+      status: 'ACTIVE',
+      expiresAt: expiresAt,
+    });
+    await this.dataSource.manager.save(session);
+
     return {
-      accessToken: this.jwtService.sign(payload),
+      accessToken: token,
       user: {
         id: user.id,
         email: user.email,

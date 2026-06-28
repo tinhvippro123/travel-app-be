@@ -28,7 +28,10 @@ export class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.userRepo.findOne({ where: { email }, relations: { role: true } });
+    return this.userRepo.findOne({
+      where: { email },
+      relations: { role: true },
+    });
   }
 
   async create(data: DeepPartial<User>): Promise<User> {

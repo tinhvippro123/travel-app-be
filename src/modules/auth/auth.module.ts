@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Session } from './entities/session.entity.js';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -11,6 +13,7 @@ import { UserModule } from '../user/user.module.js';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Session]),
     UserModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({

@@ -73,14 +73,19 @@ export class UserService implements IUserService {
       const existingAccount = await queryRunner.manager.findOne(LocalAccount, {
         where: { email: dto.email },
       });
-      
+
       if (existingAccount) {
         throw new ConflictException('Email này đã được sử dụng');
       }
 
-      let role = await queryRunner.manager.findOne(Role, { where: { key: 'USER' } });
+      let role = await queryRunner.manager.findOne(Role, {
+        where: { key: 'USER' },
+      });
       if (!role) {
-        role = queryRunner.manager.create(Role, { name: 'Khách hàng', key: 'USER' });
+        role = queryRunner.manager.create(Role, {
+          name: 'Khách hàng',
+          key: 'USER',
+        });
         await queryRunner.manager.save(role);
       }
 
