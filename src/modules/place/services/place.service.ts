@@ -24,8 +24,8 @@ export class PlaceService implements IPlaceService {
     return this.placeRepository.findByStatus(status);
   }
 
-  async findByDestination(destination: string): Promise<Place[]> {
-    return this.placeRepository.findByDestination(destination);
+  async findByLocation(location: string): Promise<Place[]> {
+    return this.placeRepository.findByLocation(location);
   }
 
   async create(dto: CreatePlaceDto): Promise<Place> {
@@ -35,6 +35,11 @@ export class PlaceService implements IPlaceService {
   async update(id: string, dto: UpdatePlaceDto): Promise<Place> {
     await this.findById(id);
     return this.placeRepository.update(id, dto);
+  }
+
+  async updateStatus(id: string, status: PlaceStatus): Promise<Place> {
+    await this.findById(id);
+    return this.placeRepository.updateStatus(id, status);
   }
 
   async delete(id: string): Promise<void> {

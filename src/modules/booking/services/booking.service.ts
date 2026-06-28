@@ -31,11 +31,11 @@ export class BookingService implements IBookingService {
 
   async createForUser(userId: string, dto: CreateBookingDto): Promise<Booking> {
     // 1. Kiểm tra Place tồn tại không
-    const place = await this.placeService.findById(dto.placeId);
+    await this.placeService.findById(dto.placeId);
 
-    // 2. Tính giá tiền
-    const price = place.discountPrice ?? place.price;
-    const totalPrice = price * dto.numberOfParticipants;
+    // 2. Place no longer owns pricing. Keep booking creation compatible
+    // until pricing moves to a dedicated tour/package module.
+    const totalPrice = 0;
 
     // 3. Tạo booking
     return this.bookingRepository.create({

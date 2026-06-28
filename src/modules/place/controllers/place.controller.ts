@@ -6,11 +6,16 @@ import {
   Delete,
   Body,
   Param,
+  Patch,
   Query,
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { IPlaceService } from '@modules/place/interfaces';
-import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/dto';
+import {
+  CreatePlaceDto,
+  UpdatePlaceDto,
+  UpdatePlaceStatusDto,
+} from '@modules/place/dto';
 import { PlaceStatus } from '@common/enums';
 
 @Controller('places')
@@ -23,8 +28,8 @@ export class PlaceController {
   }
 
   @Get('search')
-  searchByDestination(@Query('destination') destination: string) {
-    return this.placeService.findByDestination(destination);
+  searchByLocation(@Query('location') location: string) {
+    return this.placeService.findByLocation(location);
   }
 
   @Get('status/:status')
@@ -45,6 +50,14 @@ export class PlaceController {
   @Put(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdatePlaceDto) {
     return this.placeService.update(id, dto);
+  }
+
+  @Patch(':id/status')
+  updateStatus(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdatePlaceStatusDto,
+  ) {
+    return this.placeService.updateStatus(id, dto.status);
   }
 
   @Delete(':id')
