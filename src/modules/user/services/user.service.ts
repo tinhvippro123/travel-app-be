@@ -1,3 +1,10 @@
+import { User, LocalAccount, Role } from '@modules/user/entities/index.js';
+import { CreateUserDto, UpdateUserDto } from '@modules/user/dto/index.js';
+import {
+  IUserService,
+  IUserRepository,
+} from '@modules/user/interfaces/index.js';
+import { RegisterDto } from '@modules/auth/dto/index.js';
 import {
   Injectable,
   NotFoundException,
@@ -6,26 +13,15 @@ import {
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { User } from '../entities/user.entity.js';
-import { LocalAccount } from '../entities/local-account.entity.js';
-import { Role } from '../entities/role.entity.js';
-import { CreateUserDto } from '../dto/create-user.dto.js';
-import { UpdateUserDto } from '../dto/update-user.dto.js';
-import { IUserService } from '../interfaces/user-service.interface.js';
-import { IUserRepository } from '../interfaces/user-repository.interface.js';
-import { RegisterDto } from '../../auth/dto/register.dto.js';
-
 @Injectable()
 export class UserService implements IUserService {
   constructor(
     private readonly userRepository: IUserRepository,
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
-
   async findAll(): Promise<User[]> {
     return this.userRepository.findAll();
   }
-
   async findById(id: string): Promise<User> {
     const user = await this.userRepository.findById(id);
     if (!user) {
@@ -33,7 +29,6 @@ export class UserService implements IUserService {
     }
     return user;
   }
-
   async findByEmail(email: string): Promise<User> {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
@@ -41,43 +36,35 @@ export class UserService implements IUserService {
     }
     return user;
   }
-
   async create(dto: CreateUserDto): Promise<User> {
     const existing = await this.userRepository.findByEmail(dto.email);
     if (existing) {
       throw new ConflictException(`Email "${dto.email}" already exists`);
     }
-
     return this.userRepository.create({
       email: dto.email,
       fullName: dto.fullName,
     });
   }
-
   async update(id: string, dto: UpdateUserDto): Promise<User> {
     await this.findById(id);
     return this.userRepository.update(id, dto);
   }
-
   async delete(id: string): Promise<void> {
     await this.findById(id);
     await this.userRepository.softDelete(id);
   }
-
   async registerNewUser(dto: RegisterDto): Promise<User> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-
     try {
       const existingAccount = await queryRunner.manager.findOne(LocalAccount, {
         where: { email: dto.email },
       });
-
       if (existingAccount) {
         throw new ConflictException('Email này đã được sử dụng');
       }
-
       let role = await queryRunner.manager.findOne(Role, {
         where: { key: 'USER' },
       });
@@ -88,7 +75,6 @@ export class UserService implements IUserService {
         });
         await queryRunner.manager.save(role);
       }
-
       const user = queryRunner.manager.create(User, {
         email: dto.email,
         fullName: dto.fullName,
@@ -96,19 +82,15 @@ export class UserService implements IUserService {
         status: 'ACTIVE',
       });
       const savedUser = await queryRunner.manager.save(user);
-
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(dto.password, salt);
-
       const localAccount = queryRunner.manager.create(LocalAccount, {
         userId: savedUser.id,
         email: dto.email,
         passwordHash: hashedPassword,
       });
       await queryRunner.manager.save(localAccount);
-
       await queryRunner.commitTransaction();
-
       return savedUser;
     } catch (err) {
       await queryRunner.rollbackTransaction();

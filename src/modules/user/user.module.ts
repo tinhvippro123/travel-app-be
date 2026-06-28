@@ -1,14 +1,13 @@
+import { User, Role, LocalAccount } from '@modules/user/entities/index.js';
+import { UserController } from '@modules/user/controllers/index.js';
+import { UserRepository } from '@modules/user/repositories/index.js';
+import { UserService } from '@modules/user/services/index.js';
+import {
+  IUserRepository,
+  IUserService,
+} from '@modules/user/interfaces/index.js';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity.js';
-import { Role } from './entities/role.entity.js';
-import { LocalAccount } from './entities/local-account.entity.js';
-import { UserController } from './controllers/user.controller.js';
-import { UserRepository } from './repositories/user.repository.js';
-import { UserService } from './services/user.service.js';
-import { IUserRepository } from './interfaces/user-repository.interface.js';
-import { IUserService } from './interfaces/user-service.interface.js';
-
 @Module({
   imports: [TypeOrmModule.forFeature([User, Role, LocalAccount])],
   controllers: [UserController],
