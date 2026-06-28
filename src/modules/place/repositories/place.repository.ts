@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, FindOptionsWhere, In, Repository } from 'typeorm';
-import { Place, PlaceCategory } from '@modules/place/entities';
+import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
+import { Place } from '@modules/place/entities';
 import { IPlaceRepository } from '@modules/place/interfaces';
 import { PlaceStatus } from '@common/enums';
 
@@ -10,8 +10,6 @@ export class PlaceRepository implements IPlaceRepository {
   constructor(
     @InjectRepository(Place)
     private readonly placeRepo: Repository<Place>,
-    @InjectRepository(PlaceCategory)
-    private readonly categoryRepo: Repository<PlaceCategory>,
   ) {}
 
   async findAll(): Promise<Place[]> {
@@ -23,6 +21,10 @@ export class PlaceRepository implements IPlaceRepository {
       where: { id },
       relations: { categories: true },
     });
+  }
+
+  async existsById(id: string): Promise<boolean> {
+    return this.placeRepo.exists({ where: { id } });
   }
 
   async findOneBy(where: FindOptionsWhere<Place>): Promise<Place | null> {
@@ -39,40 +41,23 @@ export class PlaceRepository implements IPlaceRepository {
   async findByLocation(location: string): Promise<Place[]> {
     return this.placeRepo
       .createQueryBuilder('place')
-      .leftJoinAndSelect('place.categories', 'category')
+      .innerJoinAndSelect('place.categories', 'category')
       .where('LOWER(place.location) LIKE LOWER(:location)', {
-        location: `%${location}%`,
-      })
-      .orWhere('LOWER(place.name) LIKE LOWER(:location)', {
         location: `%${location}%`,
       })
       .getMany();
   }
 
   async create(data: DeepPartial<Place>): Promise<Place> {
-    const { categoryIds, ...placeData } = data as DeepPartial<Place> & {
-      categoryIds?: string[];
-    };
-    const place = this.placeRepo.create(placeData);
-    place.categories = await this.findCategories(categoryIds);
+    const place = this.placeRepo.create(data);
     const savedPlace = await this.placeRepo.save(place);
     return this.findById(savedPlace.id) as Promise<Place>;
   }
 
   async update(id: string, data: DeepPartial<Place>): Promise<Place> {
-    const { categoryIds, ...placeData } = data as DeepPartial<Place> & {
-      categoryIds?: string[];
-    };
-    const place = await this.findById(id);
-    if (!place) {
-      return this.findById(id) as Promise<Place>;
-    }
+    const place = (await this.findById(id)) as Place;
 
-    this.placeRepo.merge(place, placeData);
-    if (categoryIds !== undefined) {
-      place.categories = await this.findCategories(categoryIds);
-    }
-
+    this.placeRepo.merge(place, data);
     await this.placeRepo.save(place);
     return this.findById(id) as Promise<Place>;
   }
@@ -88,14 +73,5 @@ export class PlaceRepository implements IPlaceRepository {
 
   async hardDelete(id: string): Promise<void> {
     await this.placeRepo.delete(id);
-  }
-
-  private async findCategories(
-    categoryIds?: string[],
-  ): Promise<PlaceCategory[]> {
-    if (!categoryIds?.length) {
-      return [];
-    }
-    return this.categoryRepo.findBy({ id: In(categoryIds) });
   }
 }

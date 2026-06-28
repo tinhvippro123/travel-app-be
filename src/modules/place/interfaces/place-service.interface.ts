@@ -9,6 +9,8 @@ export abstract class IPlaceService extends IBaseService<
   CreatePlaceDto,
   UpdatePlaceDto
 > {
+  abstract existsById(id: string): Promise<boolean>;
+
   abstract findByStatus(status: PlaceStatus): Promise<Place[]>;
 
   abstract findByLocation(location: string): Promise<Place[]>;

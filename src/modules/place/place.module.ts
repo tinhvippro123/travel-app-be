@@ -1,18 +1,31 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Place, PlaceCategory } from '@modules/place/entities';
-import { PlaceController } from '@modules/place/controllers';
-import { PlaceRepository } from '@modules/place/repositories';
-import { PlaceService } from '@modules/place/services';
-import { IPlaceRepository, IPlaceService } from '@modules/place/interfaces';
+import {
+  PlaceCategoryController,
+  PlaceController,
+} from '@modules/place/controllers';
+import {
+  PlaceCategoryRepository,
+  PlaceRepository,
+} from '@modules/place/repositories';
+import { PlaceCategoryService, PlaceService } from '@modules/place/services';
+import {
+  IPlaceCategoryRepository,
+  IPlaceCategoryService,
+  IPlaceRepository,
+  IPlaceService,
+} from '@modules/place/interfaces';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Place, PlaceCategory])],
-  controllers: [PlaceController],
+  controllers: [PlaceCategoryController, PlaceController],
   providers: [
+    { provide: IPlaceCategoryRepository, useClass: PlaceCategoryRepository },
+    { provide: IPlaceCategoryService, useClass: PlaceCategoryService },
     { provide: IPlaceRepository, useClass: PlaceRepository },
     { provide: IPlaceService, useClass: PlaceService },
   ],
-  exports: [IPlaceService],
+  exports: [IPlaceCategoryService, IPlaceService],
 })
 export class PlaceModule {}
