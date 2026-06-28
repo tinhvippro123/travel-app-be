@@ -33,8 +33,7 @@ export class BookingService implements IBookingService {
     // 1. Kiểm tra Place tồn tại không
     await this.placeService.findById(dto.placeId);
 
-    // 2. Place no longer owns pricing. Keep booking creation compatible
-    // until pricing moves to a dedicated tour/package module.
+    // 2. Tính giá tiền
     const totalPrice = 0;
 
     // 3. Tạo booking
