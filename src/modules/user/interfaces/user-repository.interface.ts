@@ -7,6 +7,4 @@ import { User } from '../entities/user.entity.js';
  */
 export abstract class IUserRepository extends IBaseRepository<User> {
   abstract findByEmail(email: string): Promise<User | null>;
-
-  abstract findByEmailWithPassword(email: string): Promise<User | null>;
 }

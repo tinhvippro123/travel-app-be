@@ -1,27 +1,26 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity.js';
-import { UserRole } from '@common/enums/index.js';
+import { Role } from './role.entity.js';
+import { LocalAccount } from './local-account.entity.js';
 
 @Entity('users')
 export class User extends AbstractEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false })
-  password: string;
-
   @Column({ name: 'full_name' })
   fullName: string;
 
-  @Column({ nullable: true })
-  phone?: string;
-
-  @Column({ nullable: true })
+  @Column({ name: 'avatar_url', nullable: true })
   avatar?: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
-  role: UserRole;
+  @Column({ default: 'ACTIVE' })
+  status: string;
 
-  @Column({ name: 'is_active', default: true })
-  isActive: boolean;
+  @ManyToOne(() => Role)
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
+
+  @OneToOne(() => LocalAccount, localAccount => localAccount.user)
+  localAccount: LocalAccount;
 }

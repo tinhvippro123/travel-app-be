@@ -3,20 +3,24 @@ import {
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
+import { InjectDataSource } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import { User } from '../entities/user.entity.js';
+import { LocalAccount } from '../entities/local-account.entity.js';
+import { Role } from '../entities/role.entity.js';
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
 import { IUserService } from '../interfaces/user-service.interface.js';
 import { IUserRepository } from '../interfaces/user-repository.interface.js';
+import { RegisterDto } from '../../auth/dto/register.dto.js';
 
-/**
- * Concrete implementation của IUserService.
- * Inject IUserRepository (abstract class) → NestJS DI tự resolve đến UserRepository.
- */
 @Injectable()
 export class UserService implements IUserService {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(
+    private readonly userRepository: IUserRepository,
+    @InjectDataSource() private readonly dataSource: DataSource,
+  ) {}
 
   async findAll(): Promise<User[]> {
     return this.userRepository.findAll();
@@ -39,28 +43,73 @@ export class UserService implements IUserService {
   }
 
   async create(dto: CreateUserDto): Promise<User> {
-    // Check email tồn tại chưa
     const existing = await this.userRepository.findByEmail(dto.email);
     if (existing) {
       throw new ConflictException(`Email "${dto.email}" already exists`);
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(dto.password, 10);
-
     return this.userRepository.create({
-      ...dto,
-      password: hashedPassword,
+      email: dto.email,
+      fullName: dto.fullName,
     });
   }
 
   async update(id: string, dto: UpdateUserDto): Promise<User> {
-    await this.findById(id); // Throw nếu không tìm thấy
+    await this.findById(id);
     return this.userRepository.update(id, dto);
   }
 
   async delete(id: string): Promise<void> {
-    await this.findById(id); // Throw nếu không tìm thấy
+    await this.findById(id);
     await this.userRepository.softDelete(id);
+  }
+
+  async registerNewUser(dto: RegisterDto): Promise<User> {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const existingAccount = await queryRunner.manager.findOne(LocalAccount, {
+        where: { email: dto.email },
+      });
+      
+      if (existingAccount) {
+        throw new ConflictException('Email này đã được sử dụng');
+      }
+
+      let role = await queryRunner.manager.findOne(Role, { where: { key: 'USER' } });
+      if (!role) {
+        role = queryRunner.manager.create(Role, { name: 'Khách hàng', key: 'USER' });
+        await queryRunner.manager.save(role);
+      }
+
+      const user = queryRunner.manager.create(User, {
+        email: dto.email,
+        fullName: dto.fullName,
+        role: role,
+        status: 'ACTIVE',
+      });
+      const savedUser = await queryRunner.manager.save(user);
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(dto.password, salt);
+
+      const localAccount = queryRunner.manager.create(LocalAccount, {
+        userId: savedUser.id,
+        email: dto.email,
+        passwordHash: hashedPassword,
+      });
+      await queryRunner.manager.save(localAccount);
+
+      await queryRunner.commitTransaction();
+
+      return savedUser;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
   }
 }

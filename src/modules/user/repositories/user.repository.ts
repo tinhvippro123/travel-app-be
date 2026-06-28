@@ -20,7 +20,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: string): Promise<User | null> {
-    return this.userRepo.findOneBy({ id });
+    return this.userRepo.findOne({ where: { id }, relations: { role: true } });
   }
 
   async findOneBy(where: FindOptionsWhere<User>): Promise<User | null> {
@@ -28,15 +28,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.userRepo.findOneBy({ email });
-  }
-
-  async findByEmailWithPassword(email: string): Promise<User | null> {
-    return this.userRepo
-      .createQueryBuilder('user')
-      .addSelect('user.password')
-      .where('user.email = :email', { email })
-      .getOne();
+    return this.userRepo.findOne({ where: { email }, relations: { role: true } });
   }
 
   async create(data: DeepPartial<User>): Promise<User> {

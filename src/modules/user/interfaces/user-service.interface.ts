@@ -13,4 +13,5 @@ export abstract class IUserService extends IBaseService<
   UpdateUserDto
 > {
   abstract findByEmail(email: string): Promise<User>;
+  abstract registerNewUser(dto: import('../../auth/dto/register.dto.js').RegisterDto): Promise<User>;
 }
