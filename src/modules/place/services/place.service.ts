@@ -1,10 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Place } from '../entities/place.entity.js';
-import { CreatePlaceDto } from '../dto/create-place.dto.js';
-import { UpdatePlaceDto } from '../dto/update-place.dto.js';
-import { IPlaceService } from '../interfaces/place-service.interface.js';
-import { IPlaceRepository } from '../interfaces/place-repository.interface.js';
-import { PlaceStatus } from '@common/enums/index.js';
+import { Place } from '@modules/place/entities';
+import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/dto';
+import { IPlaceService, IPlaceRepository } from '@modules/place/interfaces';
+import { PlaceStatus } from '@common/enums';
 
 @Injectable()
 export class PlaceService implements IPlaceService {

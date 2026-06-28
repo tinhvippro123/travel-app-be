@@ -1,7 +1,7 @@
 import { IBaseService } from '@common/interfaces/base-service.interface.js';
-import { Place } from '../entities/place.entity.js';
-import { CreatePlaceDto } from '../dto/create-place.dto.js';
-import { UpdatePlaceDto } from '../dto/update-place.dto.js';
+import { Place } from '@modules/place/entities';
+import { CreatePlaceDto } from '@modules/place/dto';
+import { UpdatePlaceDto } from '@modules/place/dto';
 import { PlaceStatus } from '@common/enums/index.js';
 
 export abstract class IPlaceService extends IBaseService<

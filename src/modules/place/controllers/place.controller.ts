@@ -9,10 +9,9 @@ import {
   Query,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { IPlaceService } from '../interfaces/place-service.interface.js';
-import { CreatePlaceDto } from '../dto/create-place.dto.js';
-import { UpdatePlaceDto } from '../dto/update-place.dto.js';
-import { PlaceStatus } from '@common/enums/index.js';
+import { IPlaceService } from '@modules/place/interfaces';
+import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/dto';
+import { PlaceStatus } from '@common/enums';
 
 @Controller('places')
 export class PlaceController {

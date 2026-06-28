@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
-import { Place } from '../entities/place.entity.js';
-import { IPlaceRepository } from '../interfaces/place-repository.interface.js';
+import { Place } from '@modules/place/entities';
+import { IPlaceRepository } from '@modules/place/interfaces';
 import { PlaceStatus } from '@common/enums/index.js';
 
 @Injectable()
