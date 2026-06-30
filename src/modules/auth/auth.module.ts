@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service.js';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
 import { JwtAuthGuard } from './guards/jwt-auth.guard.js';
 import { RolesGuard } from './guards/roles.guard.js';
-import { UserModule } from '../user/user.module.js';
+import { UserModule } from '@modules/user/index.js';
 
 @Module({
   imports: [

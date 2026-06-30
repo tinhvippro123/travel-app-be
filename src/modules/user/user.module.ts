@@ -1,7 +1,7 @@
 import { User, Role, LocalAccount } from '@modules/user/entities/index.js';
-import { UserController } from '@modules/user/controllers/index.js';
-import { UserRepository } from '@modules/user/repositories/index.js';
-import { UserService } from '@modules/user/services/index.js';
+import { UserController } from './controllers/user.controller.js';
+import { UserRepository } from './repositories/user.repository.js';
+import { UserService } from './services/user.service.js';
 import {
   IUserRepository,
   IUserService,

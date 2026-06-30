@@ -1,5 +1,9 @@
 import { IUserService } from '@modules/user/interfaces/index.js';
-import { CreateUserDto, UpdateUserDto } from '@modules/user/dto/index.js';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  UserResponseDto,
+} from '@modules/user/dto/index.js';
 import {
   Controller,
   Get,
@@ -10,27 +14,42 @@ import {
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
+
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: IUserService) {}
+
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findAll(): Promise<UserResponseDto[]> {
+    const users = await this.userService.findAll();
+    return users.map((u) => new UserResponseDto(u));
   }
+
   @Get(':id')
-  findById(@Param('id', ParseUUIDPipe) id: string) {
-    return this.userService.findById(id);
+  async findById(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<UserResponseDto> {
+    const user = await this.userService.findById(id);
+    return new UserResponseDto(user);
   }
+
   @Post()
-  create(@Body() dto: CreateUserDto) {
-    return this.userService.create(dto);
+  async create(@Body() dto: CreateUserDto): Promise<UserResponseDto> {
+    const user = await this.userService.create(dto);
+    return new UserResponseDto(user);
   }
+
   @Put(':id')
-  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateUserDto) {
-    return this.userService.update(id, dto);
+  async update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateUserDto,
+  ): Promise<UserResponseDto> {
+    const user = await this.userService.update(id, dto);
+    return new UserResponseDto(user);
   }
+
   @Delete(':id')
-  delete(@Param('id', ParseUUIDPipe) id: string) {
-    return this.userService.delete(id);
+  async delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
+    await this.userService.delete(id);
   }
 }

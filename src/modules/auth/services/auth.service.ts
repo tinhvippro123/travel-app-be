@@ -1,9 +1,15 @@
 import {
   IUserRepository,
   IUserService,
-} from '@modules/user/interfaces/index.js';
-import { User, LocalAccount } from '@modules/user/entities/index.js';
-import { LoginDto, RegisterDto } from '@modules/auth/dto/index.js';
+  User,
+  LocalAccount,
+  UserResponseDto,
+} from '@modules/user/index.js';
+import {
+  LoginDto,
+  RegisterDto,
+  AuthResponseDto,
+} from '@modules/auth/dto/index.js';
 import { Session } from '@modules/auth/entities/index.js';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -22,7 +28,7 @@ export class AuthService {
   /**
    * Đăng nhập — kiểm tra email + password, trả về JWT token.
    */
-  async login(dto: LoginDto) {
+  async login(dto: LoginDto): Promise<AuthResponseDto> {
     // Tìm LocalAccount theo email
     const localAccount = await this.dataSource.manager.findOne(LocalAccount, {
       where: { email: dto.email },
@@ -47,7 +53,7 @@ export class AuthService {
   /**
    * Đăng ký — tạo user mới và trả về JWT token.
    */
-  async register(dto: RegisterDto) {
+  async register(dto: RegisterDto): Promise<AuthResponseDto> {
     const user = await this.userService.registerNewUser(dto);
     // Cần query lại để lấy role nếu registerNewUser chưa gán populate đầy đủ
     const populatedUser = await this.userService.findById(user.id);
@@ -94,12 +100,7 @@ export class AuthService {
     await this.dataSource.manager.save(session);
     return {
       accessToken: token,
-      user: {
-        id: user.id,
-        email: user.email,
-        fullName: user.fullName,
-        role: roleKey,
-      },
+      user: new UserResponseDto(user),
     };
   }
 }
