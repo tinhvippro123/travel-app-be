@@ -9,10 +9,10 @@ import { CloudinaryModule } from './infrastructure/cloudinary/cloudinary.module.
 import { MailModule } from './infrastructure/mail/mail.module.js';
 
 // Feature modules
-import { UserModule } from './modules/user/user.module.js';
-import { AuthModule } from './modules/auth/auth.module.js';
-import { PlaceModule } from './modules/place/place.module.js';
-import { BookingModule } from './modules/booking/booking.module.js';
+import { UserModule } from '@modules/user/user.module.js';
+import { AuthModule } from '@modules/auth/auth.module.js';
+import { PlaceModule } from '@modules/place/place.module.js';
+import { BookingModule } from '@modules/booking/booking.module.js';
 
 @Module({
   imports: [
