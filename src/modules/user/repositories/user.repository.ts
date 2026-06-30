@@ -1,5 +1,5 @@
-import { User } from '@modules/user/entities/index.js';
-import { IUserRepository } from '@modules/user/interfaces/index.js';
+import { User } from '@modules/user/index.js';
+import { IUserRepository } from '@modules/user/index.js';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

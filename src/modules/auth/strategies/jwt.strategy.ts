@@ -1,5 +1,5 @@
-import { IUserService } from '@modules/user/interfaces/index.js';
-import { Session } from '@modules/auth/entities/index.js';
+import { IUserService } from '@modules/user/index.js';
+import { Session } from '@modules/auth/index.js';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

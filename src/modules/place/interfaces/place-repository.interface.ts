@@ -1,4 +1,4 @@
-import { Place } from '@modules/place/entities/index.js';
+import { Place } from '@modules/place/index.js';
 import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
 import { PlaceStatus } from '@common/enums/index.js';
 export abstract class IPlaceRepository extends IBaseRepository<Place> {

@@ -1,9 +1,9 @@
-import { IUserService } from '@modules/user/interfaces/index.js';
+import { IUserService } from '@modules/user/index.js';
 import {
   CreateUserDto,
   UpdateUserDto,
   UserResponseDto,
-} from '@modules/user/dto/index.js';
+} from '@modules/user/index.js';
 import {
   Controller,
   Get,

@@ -1,5 +1,5 @@
-import { Place } from '@modules/place/entities/index.js';
-import { IPlaceRepository } from '@modules/place/interfaces/index.js';
+import { Place } from '@modules/place/index.js';
+import { IPlaceRepository } from '@modules/place/index.js';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

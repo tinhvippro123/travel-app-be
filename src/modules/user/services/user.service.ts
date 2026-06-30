@@ -1,10 +1,7 @@
-import { User, LocalAccount, Role } from '@modules/user/entities/index.js';
-import { CreateUserDto, UpdateUserDto } from '@modules/user/dto/index.js';
-import {
-  IUserService,
-  IUserRepository,
-} from '@modules/user/interfaces/index.js';
-import { RegisterDto } from '@modules/auth/dto/index.js';
+import { User, LocalAccount, Role } from '@modules/user/index.js';
+import { CreateUserDto, UpdateUserDto } from '@modules/user/index.js';
+import { IUserService, IUserRepository } from '@modules/user/index.js';
+import { RegisterDto } from '@modules/auth/index.js';
 import {
   Injectable,
   NotFoundException,

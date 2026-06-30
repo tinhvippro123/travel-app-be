@@ -5,12 +5,8 @@ import {
   LocalAccount,
   UserResponseDto,
 } from '@modules/user/index.js';
-import {
-  LoginDto,
-  RegisterDto,
-  AuthResponseDto,
-} from '@modules/auth/dto/index.js';
-import { Session } from '@modules/auth/entities/index.js';
+import { LoginDto, RegisterDto, AuthResponseDto } from '@modules/auth/index.js';
+import { Session } from '@modules/auth/index.js';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectDataSource } from '@nestjs/typeorm';

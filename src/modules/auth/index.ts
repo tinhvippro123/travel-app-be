@@ -1,4 +1,7 @@
 export * from './auth.module.js';
-export { LoginDto, RegisterDto, AuthResponseDto } from './dto/index.js';
-export { Session } from './entities/index.js';
-export { JwtAuthGuard, RolesGuard } from './guards/index.js';
+export { LoginDto } from './dto/login.dto.js';
+export { RegisterDto } from './dto/register.dto.js';
+export { AuthResponseDto } from './dto/auth-response.dto.js';
+export { Session } from './entities/session.entity.js';
+export { JwtAuthGuard } from './guards/jwt-auth.guard.js';
+export { RolesGuard } from './guards/roles.guard.js';

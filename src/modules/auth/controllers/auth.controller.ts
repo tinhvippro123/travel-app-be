@@ -1,10 +1,6 @@
 import { AuthService } from '../services/auth.service.js';
-import {
-  LoginDto,
-  RegisterDto,
-  AuthResponseDto,
-} from '@modules/auth/dto/index.js';
-import { JwtAuthGuard } from '@modules/auth/guards/index.js';
+import { LoginDto, RegisterDto, AuthResponseDto } from '@modules/auth/index.js';
+import { JwtAuthGuard } from '@modules/auth/index.js';
 import {
   Controller,
   Post,
