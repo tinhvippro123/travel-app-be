@@ -1,8 +1,13 @@
-import { User, Role, LocalAccount } from '@modules/user/index.js';
+import {
+  User,
+  Role,
+  LocalAccount,
+  IUserRepository,
+  IUserService,
+} from '@modules/user/index.js';
 import { UserController } from './controllers/user.controller.js';
 import { UserRepository } from './repositories/user.repository.js';
 import { UserService } from './services/user.service.js';
-import { IUserRepository, IUserService } from '@modules/user/index.js';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({

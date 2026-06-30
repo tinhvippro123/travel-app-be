@@ -1,5 +1,8 @@
-import { IPlaceService } from '@modules/place/index.js';
-import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/index.js';
+import {
+  IPlaceService,
+  CreatePlaceDto,
+  UpdatePlaceDto,
+} from '@modules/place/index.js';
 import {
   Controller,
   Get,

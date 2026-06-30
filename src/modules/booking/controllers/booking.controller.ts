@@ -1,5 +1,8 @@
-import { IBookingService } from '@modules/booking/index.js';
-import { CreateBookingDto, UpdateBookingDto } from '@modules/booking/index.js';
+import {
+  IBookingService,
+  CreateBookingDto,
+  UpdateBookingDto,
+} from '@modules/booking/index.js';
 import {
   Controller,
   Get,

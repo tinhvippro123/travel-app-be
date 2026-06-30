@@ -1,6 +1,10 @@
-import { Place } from '@modules/place/index.js';
-import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/index.js';
-import { IPlaceService, IPlaceRepository } from '@modules/place/index.js';
+import {
+  Place,
+  CreatePlaceDto,
+  UpdatePlaceDto,
+  IPlaceService,
+  IPlaceRepository,
+} from '@modules/place/index.js';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PlaceStatus } from '@common/enums/index.js';
 @Injectable()

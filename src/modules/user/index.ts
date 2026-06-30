@@ -1,9 +1,9 @@
-export * from './user.module.js';
-export { CreateUserDto } from './dto/create-user.dto.js';
-export { UpdateUserDto } from './dto/update-user.dto.js';
-export { UserResponseDto } from './dto/user-response.dto.js';
-export { IUserRepository } from './interfaces/user-repository.interface.js';
-export { IUserService } from './interfaces/user-service.interface.js';
-export { User } from './entities/user.entity.js';
-export { Role } from './entities/role.entity.js';
-export { LocalAccount } from './entities/local-account.entity.js';
+export * from '@modules/user/user.module.js';
+export { CreateUserDto } from '@modules/user/dto/create-user.dto.js';
+export { UpdateUserDto } from '@modules/user/dto/update-user.dto.js';
+export { UserResponseDto } from '@modules/user/dto/user-response.dto.js';
+export { IUserRepository } from '@modules/user/interfaces/user-repository.interface.js';
+export { IUserService } from '@modules/user/interfaces/user-service.interface.js';
+export { User } from '@modules/user/entities/user.entity.js';
+export { Role } from '@modules/user/entities/role.entity.js';
+export { LocalAccount } from '@modules/user/entities/local-account.entity.js';

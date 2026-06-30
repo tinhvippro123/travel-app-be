@@ -1,6 +1,12 @@
-import { User, LocalAccount, Role } from '@modules/user/index.js';
-import { CreateUserDto, UpdateUserDto } from '@modules/user/index.js';
-import { IUserService, IUserRepository } from '@modules/user/index.js';
+import {
+  User,
+  LocalAccount,
+  Role,
+  CreateUserDto,
+  UpdateUserDto,
+  IUserService,
+  IUserRepository,
+} from '@modules/user/index.js';
 import { RegisterDto } from '@modules/auth/index.js';
 import {
   Injectable,

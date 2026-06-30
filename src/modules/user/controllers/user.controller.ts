@@ -1,5 +1,5 @@
-import { IUserService } from '@modules/user/index.js';
 import {
+  IUserService,
   CreateUserDto,
   UpdateUserDto,
   UserResponseDto,
