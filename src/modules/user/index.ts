@@ -3,8 +3,16 @@ export { CreateUserDto } from '@modules/user/dto/create-user.dto.js';
 export { UpdateUserDto } from '@modules/user/dto/update-user.dto.js';
 export { UpdateProfileDto } from '@modules/user/dto/update-profile.dto.js';
 export { UserResponseDto } from '@modules/user/dto/user-response.dto.js';
+
+export { CreateRoleDto } from '@modules/user/dto/create-role.dto.js';
+export { UpdateRoleDto } from '@modules/user/dto/update-role.dto.js';
+export { RoleResponseDto } from '@modules/user/dto/role-response.dto.js';
+
 export { IUserRepository } from '@modules/user/interfaces/user-repository.interface.js';
 export { IUserService } from '@modules/user/interfaces/user-service.interface.js';
+export { IRoleRepository } from '@modules/user/interfaces/role-repository.interface.js';
+export { IRoleService } from '@modules/user/interfaces/role-service.interface.js';
+
 export { User } from '@modules/user/entities/user.entity.js';
 export { Role } from '@modules/user/entities/role.entity.js';
 export { LocalAccount } from '@modules/user/entities/local-account.entity.js';

@@ -45,9 +45,21 @@ export class UserService implements IUserService {
     if (existing) {
       throw new ConflictException(`Email "${dto.email}" already exists`);
     }
+
+    let role: Role | null = null;
+    if (dto.role) {
+      role = await this.dataSource.manager.findOne(Role, {
+        where: { key: dto.role.toUpperCase() },
+      });
+      if (!role) {
+        throw new NotFoundException(`Role "${dto.role}" not found in database`);
+      }
+    }
+
     return this.userRepository.create({
       email: dto.email,
       fullName: dto.fullName,
+      ...(role && { role }),
     });
   }
   async update(id: string, dto: UpdateUserDto): Promise<User> {
