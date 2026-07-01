@@ -1,6 +1,7 @@
 export * from '@modules/user/user.module.js';
 export { CreateUserDto } from '@modules/user/dto/create-user.dto.js';
 export { UpdateUserDto } from '@modules/user/dto/update-user.dto.js';
+export { UpdateProfileDto } from '@modules/user/dto/update-profile.dto.js';
 export { UserResponseDto } from '@modules/user/dto/user-response.dto.js';
 export { IUserRepository } from '@modules/user/interfaces/user-repository.interface.js';
 export { IUserService } from '@modules/user/interfaces/user-service.interface.js';

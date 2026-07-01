@@ -4,6 +4,7 @@ import {
   Role,
   CreateUserDto,
   UpdateUserDto,
+  UpdateProfileDto,
   IUserService,
   IUserRepository,
 } from '@modules/user/index.js';
@@ -57,6 +58,12 @@ export class UserService implements IUserService {
     await this.findById(id);
     await this.userRepository.softDelete(id);
   }
+
+  async updateProfile(id: string, dto: UpdateProfileDto): Promise<User> {
+    await this.findById(id);
+    return this.userRepository.update(id, dto);
+  }
+
   async registerNewUser(dto: RegisterDto): Promise<User> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
