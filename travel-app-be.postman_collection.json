@@ -78,6 +78,197 @@
               "path": ["places"]
             }
           }
+        },
+        {
+          "name": "Search Places By Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/search?location=Da Nang",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "search"],
+              "query": [
+                { "key": "location", "value": "Da Nang" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Places By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/status/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "status", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get Place By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "{{placeId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Place",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Da Nang\",\n  \"description\": \"Coastal city in Central Vietnam.\",\n  \"location\": \"Da Nang\",\n  \"image\": \"https://example.com/da-nang.jpg\",\n  \"content\": \"<p>Da Nang is known for beaches, bridges, and nearby heritage sites.</p>\",\n  \"status\": \"active\",\n  \"categoryIds\": [\"{{placeCategoryId}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places",
+              "host": ["{{baseUrl}}"],
+              "path": ["places"]
+            }
+          }
+        },
+        {
+          "name": "Update Place",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Da Nang City\",\n  \"description\": \"Updated place description.\",\n  \"location\": \"Da Nang\",\n  \"image\": \"https://example.com/da-nang-updated.jpg\",\n  \"content\": \"<p>Updated rich content for Da Nang.</p>\",\n  \"status\": \"active\",\n  \"categoryIds\": [\"{{placeCategoryId}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "{{placeId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Place Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"inactive\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "{{placeId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Delete Place",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["places", "{{placeId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Place Category",
+      "item": [
+        {
+          "name": "Get All Place Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/place-categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["place-categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Place Category By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/place-categories/{{placeCategoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["place-categories", "{{placeCategoryId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Place Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beach\",\n  \"thumbnailUrl\": \"https://example.com/beach.jpg\",\n  \"description\": \"Coastal destinations, beaches, islands, and bays.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/place-categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["place-categories"]
+            }
+          }
+        },
+        {
+          "name": "Update Place Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beach & Islands\",\n  \"thumbnailUrl\": \"https://example.com/beach-islands.jpg\",\n  \"description\": \"Updated category description.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/place-categories/{{placeCategoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["place-categories", "{{placeCategoryId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Place Category",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/place-categories/{{placeCategoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["place-categories", "{{placeCategoryId}}"]
+            }
+          }
         }
       ]
     },
@@ -114,6 +305,14 @@
     {
       "key": "token",
       "value": "your_jwt_token_here"
+    },
+    {
+      "key": "placeId",
+      "value": "place_uuid_here"
+    },
+    {
+      "key": "placeCategoryId",
+      "value": "place_category_uuid_here"
     }
   ]
 }
