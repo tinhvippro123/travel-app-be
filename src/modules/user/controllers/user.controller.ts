@@ -43,6 +43,20 @@ export class UserController {
     return new UserResponseDto(user);
   }
 
+  @Get('me/favorites')
+  async getFavorites(@CurrentUser() userPayload: JwtPayload) {
+    // In a real app we might map this to PlaceResponseDto, but for now we return the raw entities
+    return this.userService.getFavorites(userPayload.sub);
+  }
+
+  @Post('me/favorites/:placeId')
+  async toggleFavorite(
+    @CurrentUser() userPayload: JwtPayload,
+    @Param('placeId', ParseUUIDPipe) placeId: string,
+  ) {
+    return this.userService.toggleFavorite(userPayload.sub, placeId);
+  }
+
   @Get()
   @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)

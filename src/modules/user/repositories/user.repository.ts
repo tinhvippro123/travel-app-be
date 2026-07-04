@@ -1,4 +1,5 @@
 import { User, IUserRepository } from '@modules/user/index.js';
+import { Place } from '@modules/place/entities/place.entity.js';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
@@ -40,5 +41,29 @@ export class UserRepository implements IUserRepository {
   }
   async hardDelete(id: string): Promise<void> {
     await this.userRepo.delete(id);
+  }
+
+  async addFavorite(userId: string, placeId: string): Promise<void> {
+    await this.userRepo
+      .createQueryBuilder()
+      .relation(User, 'favoritePlaces')
+      .of(userId)
+      .add(placeId);
+  }
+
+  async removeFavorite(userId: string, placeId: string): Promise<void> {
+    await this.userRepo
+      .createQueryBuilder()
+      .relation(User, 'favoritePlaces')
+      .of(userId)
+      .remove(placeId);
+  }
+
+  async getFavorites(userId: string): Promise<Place[]> {
+    const user = await this.userRepo.findOne({
+      where: { id: userId },
+      relations: { favoritePlaces: true },
+    });
+    return user?.favoritePlaces || [];
   }
 }

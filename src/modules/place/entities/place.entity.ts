@@ -1,6 +1,7 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToMany } from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity.js';
 import { PlaceStatus } from '@common/enums/index.js';
+import { User } from '@modules/user/entities/user.entity.js';
 
 @Entity('places')
 export class Place extends AbstractEntity {
@@ -48,4 +49,7 @@ export class Place extends AbstractEntity {
 
   @Column({ name: 'end_date', type: 'timestamp', nullable: true })
   endDate?: Date;
+
+  @ManyToMany(() => User, (user) => user.favoritePlaces)
+  favoritedBy: User[];
 }

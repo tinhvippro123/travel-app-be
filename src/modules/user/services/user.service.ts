@@ -8,6 +8,7 @@ import {
   IUserService,
   IUserRepository,
 } from '@modules/user/index.js';
+import { Place } from '@modules/place/entities/place.entity.js';
 import { RegisterDto } from '@modules/auth/index.js';
 import {
   Injectable,
@@ -120,5 +121,27 @@ export class UserService implements IUserService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  async toggleFavorite(
+    userId: string,
+    placeId: string,
+  ): Promise<{ isFavorite: boolean }> {
+    await this.findById(userId); // Ensure user exists
+    const favorites = await this.userRepository.getFavorites(userId);
+    const isCurrentlyFavorite = favorites.some((place) => place.id === placeId);
+
+    if (isCurrentlyFavorite) {
+      await this.userRepository.removeFavorite(userId, placeId);
+      return { isFavorite: false };
+    } else {
+      await this.userRepository.addFavorite(userId, placeId);
+      return { isFavorite: true };
+    }
+  }
+
+  async getFavorites(userId: string): Promise<Place[]> {
+    await this.findById(userId); // Ensure user exists
+    return this.userRepository.getFavorites(userId);
   }
 }
