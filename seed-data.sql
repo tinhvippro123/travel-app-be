@@ -21,41 +21,41 @@ INSERT INTO
         updated_at
     )
 VALUES (
-        'c0000000-0000-0000-0000-000000000001',
+        'c0000000-0000-4000-8000-000000000001',
         'Thiên nhiên',
-        'https://example.com/nature.jpg',
+        'https://picsum.photos/seed/nature/800/600',
         'Phong cảnh thiên nhiên hùng vĩ và tuyệt đẹp',
         NOW(),
         NOW()
     ),
     (
-        'c0000000-0000-0000-0000-000000000002',
+        'c0000000-0000-4000-8000-000000000002',
         'Văn hóa',
-        'https://example.com/culture.jpg',
+        'https://picsum.photos/seed/culture/800/600',
         'Các di tích lịch sử và văn hóa truyền thống',
         NOW(),
         NOW()
     ),
     (
-        'c0000000-0000-0000-0000-000000000003',
+        'c0000000-0000-4000-8000-000000000003',
         'Khám phá',
-        'https://example.com/adventure.jpg',
+        'https://picsum.photos/seed/adventure/800/600',
         'Các hoạt động khám phá và mạo hiểm thú vị',
         NOW(),
         NOW()
     ),
     (
-        'c0000000-0000-0000-0000-000000000004',
+        'c0000000-0000-4000-8000-000000000004',
         'Nghỉ dưỡng',
-        'https://example.com/relax.jpg',
+        'https://picsum.photos/seed/relax/800/600',
         'Các điểm đến yên bình để thư giãn',
         NOW(),
         NOW()
     ),
     (
-        'c0000000-0000-0000-0000-000000000005',
+        'c0000000-0000-4000-8000-000000000005',
         'Thành thị',
-        'https://example.com/urban.jpg',
+        'https://picsum.photos/seed/urban/800/600',
         'Khám phá sự nhộn nhịp của các thành phố hiện đại',
         NOW(),
         NOW()
@@ -77,220 +77,220 @@ INSERT INTO
         updated_at
     )
 VALUES (
-        'd0000000-0000-0000-0000-000000000001',
+        'd0000000-0000-4000-8000-000000000001',
         'Vịnh Hạ Long',
         'Di sản thiên nhiên thế giới được UNESCO công nhận.',
         'Quảng Ninh, Việt Nam',
-        'https://example.com/halong.jpg',
+        'https://picsum.photos/seed/halong/800/600',
         '<p>Vịnh Hạ Long nổi bật với hàng ngàn hòn đảo đá vôi kỳ vĩ muôn hình vạn trạng trên mặt nước xanh biếc.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000002',
+        'd0000000-0000-4000-8000-000000000002',
         'Phố cổ Hội An',
         'Bản sắc giao thương quốc tế một thời của Đông Nam Á.',
         'Quảng Nam, Việt Nam',
-        'https://example.com/hoian.jpg',
+        'https://picsum.photos/seed/hoian/800/600',
         '<p>Nổi tiếng với những chiếc lồng đèn rực rỡ, kiến trúc cổ kính và những tiệm may đo lấy liền.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000003',
+        'd0000000-0000-4000-8000-000000000003',
         'Động Phong Nha',
         'Hệ thống hang động kỳ vĩ.',
         'Quảng Bình, Việt Nam',
-        'https://example.com/phongnha.jpg',
+        'https://picsum.photos/seed/phongnha/800/600',
         '<p>Vườn quốc gia với những dãy núi đá vôi cổ nhất ở châu Á và vô số nhũ đá tuyệt đẹp.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000004',
+        'd0000000-0000-4000-8000-000000000004',
         'Sa Pa',
         'Thị trấn mù sương với những thửa ruộng bậc thang bát ngát.',
         'Lào Cai, Việt Nam',
-        'https://example.com/sapa.jpg',
+        'https://picsum.photos/seed/sapa/800/600',
         '<p>Được biết đến với sự đa dạng văn hóa của các dân tộc thiểu số và cảnh quan núi rừng hùng vĩ.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000005',
+        'd0000000-0000-4000-8000-000000000005',
         'Đà Nẵng',
         'Thành phố đáng sống với những bãi biển đẹp và những cây cầu độc đáo.',
         'Đà Nẵng, Việt Nam',
-        'https://example.com/danang.jpg',
+        'https://picsum.photos/seed/danang/800/600',
         '<p>Sở hữu Cầu Rồng nổi tiếng và bãi biển Mỹ Khê tuyệt đẹp cùng dịch vụ du lịch phát triển.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000006',
+        'd0000000-0000-4000-8000-000000000006',
         'Đảo Phú Quốc',
         'Thiên đường nhiệt đới với những bãi cát trắng trải dài.',
         'Kiên Giang, Việt Nam',
-        'https://example.com/phuquoc.jpg',
+        'https://picsum.photos/seed/phuquoc/800/600',
         '<p>Hòn đảo lớn nhất Việt Nam, là điểm đến hoàn hảo cho những kỳ nghỉ dưỡng biển.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000007',
+        'd0000000-0000-4000-8000-000000000007',
         'Đỉnh Fansipan',
         'Nóc nhà của Đông Dương.',
         'Lào Cai, Việt Nam',
-        'https://example.com/fansipan.jpg',
+        'https://picsum.photos/seed/fansipan/800/600',
         '<p>Trải nghiệm leo núi đầy thử thách hoặc chuyến đi cáp treo ngắm nhìn toàn cảnh Tây Bắc.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000008',
+        'd0000000-0000-4000-8000-000000000008',
         'Cố đô Huế',
         'Kinh đô xưa của triều đại phong kiến Việt Nam.',
         'Thừa Thiên Huế, Việt Nam',
-        'https://example.com/hue.jpg',
+        'https://picsum.photos/seed/hue/800/600',
         '<p>Nơi tọa lạc của Đại Nội, các lăng tẩm hoàng gia và dòng sông Hương thơ mộng.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000009',
+        'd0000000-0000-4000-8000-000000000009',
         'Thành phố Hồ Chí Minh',
         'Trung tâm kinh tế sôi động nhất Việt Nam.',
         'Hồ Chí Minh, Việt Nam',
-        'https://example.com/hcmc.jpg',
+        'https://picsum.photos/seed/hcmc/800/600',
         '<p>Một đô thị nhộn nhịp với các công trình kiến trúc thời Pháp thuộc và các tòa nhà chọc trời hiện đại.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000010',
+        'd0000000-0000-4000-8000-000000000010',
         'Phố cổ Hà Nội',
         'Trái tim lịch sử của thủ đô.',
         'Hà Nội, Việt Nam',
-        'https://example.com/hanoi.jpg',
+        'https://picsum.photos/seed/hanoi/800/600',
         '<p>Nổi tiếng với khu 36 phố phường, mỗi con phố mang một nét đặc trưng về một ngành nghề thủ công xưa.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000011',
+        'd0000000-0000-4000-8000-000000000011',
         'Quần thể Tràng An',
         'Khu du lịch sinh thái và cảnh quan tuyệt sắc.',
         'Ninh Bình, Việt Nam',
-        'https://example.com/ninhbinh.jpg',
+        'https://picsum.photos/seed/ninhbinh/800/600',
         '<p>Được mệnh danh là Vịnh Hạ Long trên cạn với những ngọn núi đá vôi và thung lũng xen kẽ.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000012',
+        'd0000000-0000-4000-8000-000000000012',
         'Bà Nà Hills',
         'Khu nghỉ dưỡng trên mây với Cầu Vàng nổi tiếng.',
         'Đà Nẵng, Việt Nam',
-        'https://example.com/banahills.jpg',
+        'https://picsum.photos/seed/banahills/800/600',
         '<p>Mang đến trải nghiệm lạc vào Làng Pháp và chiêm ngưỡng Cầu Vàng được nâng đỡ bởi đôi bàn tay khổng lồ.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000013',
+        'd0000000-0000-4000-8000-000000000013',
         'Mũi Né',
         'Thủ phủ resort ven biển nổi tiếng với những đồi cát bay.',
         'Bình Thuận, Việt Nam',
-        'https://example.com/muine.jpg',
+        'https://picsum.photos/seed/muine/800/600',
         '<p>Điểm đến hấp dẫn cho các tín đồ lướt ván diều và khám phá đồi cát trắng, đồi cát đỏ.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000014',
+        'd0000000-0000-4000-8000-000000000014',
         'Côn Đảo',
         'Quần đảo nổi tiếng với hệ sinh thái biển và di tích lịch sử.',
         'Bà Rịa - Vũng Tàu, Việt Nam',
-        'https://example.com/condao.jpg',
+        'https://picsum.photos/seed/condao/800/600',
         '<p>Những bãi biển hoang sơ tuyệt đẹp bên cạnh quá khứ hào hùng của di tích nhà tù Côn Đảo.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000015',
+        'd0000000-0000-4000-8000-000000000015',
         'Đà Lạt',
         'Thành phố ngàn hoa của mùa xuân vĩnh cửu.',
         'Lâm Đồng, Việt Nam',
-        'https://example.com/dalat.jpg',
+        'https://picsum.photos/seed/dalat/800/600',
         '<p>Điểm nghỉ dưỡng lãng mạn bao quanh bởi những đồi thông mờ sương và các thác nước thơ mộng.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000016',
+        'd0000000-0000-4000-8000-000000000016',
         'Thánh địa Mỹ Sơn',
         'Quần thể di tích đền tháp Chăm Pa cổ kính.',
         'Quảng Nam, Việt Nam',
-        'https://example.com/myson.jpg',
+        'https://picsum.photos/seed/myson/800/600',
         '<p>Được xây dựng từ thế kỷ 4 đến thế kỷ 14 bởi các vị vua của vương quốc Chăm Pa cổ đại.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000017',
+        'd0000000-0000-4000-8000-000000000017',
         'Thác Bản Giốc',
         'Ngọn thác hùng vĩ nằm trên biên giới tự nhiên.',
         'Cao Bằng, Việt Nam',
-        'https://example.com/bangioc.jpg',
+        'https://picsum.photos/seed/bangioc/800/600',
         '<p>Một trong những thác nước tự nhiên xuyên biên giới lớn nhất thế giới với vẻ đẹp tráng lệ.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000018',
+        'd0000000-0000-4000-8000-000000000018',
         'Hang Sơn Đoòng',
         'Hang động tự nhiên lớn nhất hành tinh.',
         'Quảng Bình, Việt Nam',
-        'https://example.com/sondoong.jpg',
+        'https://picsum.photos/seed/sondoong/800/600',
         '<p>Một hang động khổng lồ sở hữu cả một hệ sinh thái rừng rậm và hệ thống thời tiết riêng biệt bên trong.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000019',
+        'd0000000-0000-4000-8000-000000000019',
         'Địa đạo Củ Chi',
         'Hệ thống hầm ngầm kháng chiến rộng lớn.',
         'Hồ Chí Minh, Việt Nam',
-        'https://example.com/cuchi.jpg',
+        'https://picsum.photos/seed/cuchi/800/600',
         '<p>Căn cứ bí mật với mạng lưới địa đạo chằng chịt, được quân giải phóng sử dụng trong chiến tranh.</p>',
         'active',
         NOW(),
         NOW()
     ),
     (
-        'd0000000-0000-0000-0000-000000000020',
+        'd0000000-0000-4000-8000-000000000020',
         'Nha Trang',
         'Thành phố biển nghỉ dưỡng sôi động.',
         'Khánh Hòa, Việt Nam',
-        'https://example.com/nhatrang.jpg',
+        'https://picsum.photos/seed/nhatrang/800/600',
         '<p>Nổi tiếng với vịnh biển đẹp mê hồn, các hòn đảo ngoài khơi và hoạt động lặn ngắm san hô.</p>',
         'active',
         NOW(),
@@ -305,149 +305,149 @@ INSERT INTO
 VALUES
     -- Vịnh Hạ Long (Thiên nhiên, Nghỉ dưỡng)
     (
-        'd0000000-0000-0000-0000-000000000001',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000001',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000001',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000001',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     -- Phố cổ Hội An (Văn hóa)
     (
-        'd0000000-0000-0000-0000-000000000002',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000002',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     -- Động Phong Nha (Thiên nhiên, Khám phá)
     (
-        'd0000000-0000-0000-0000-000000000003',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000003',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000003',
-        'c0000000-0000-0000-0000-000000000003'
+        'd0000000-0000-4000-8000-000000000003',
+        'c0000000-0000-4000-8000-000000000003'
     ),
     -- Sa Pa (Thiên nhiên, Văn hóa)
     (
-        'd0000000-0000-0000-0000-000000000004',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000004',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000004',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000004',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     -- Đà Nẵng (Thành thị, Nghỉ dưỡng)
     (
-        'd0000000-0000-0000-0000-000000000005',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000005',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     (
-        'd0000000-0000-0000-0000-000000000005',
-        'c0000000-0000-0000-0000-000000000005'
+        'd0000000-0000-4000-8000-000000000005',
+        'c0000000-0000-4000-8000-000000000005'
     ),
     -- Đảo Phú Quốc (Nghỉ dưỡng, Thiên nhiên)
     (
-        'd0000000-0000-0000-0000-000000000006',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000006',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000006',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000006',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     -- Đỉnh Fansipan (Khám phá, Thiên nhiên)
     (
-        'd0000000-0000-0000-0000-000000000007',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000007',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000007',
-        'c0000000-0000-0000-0000-000000000003'
+        'd0000000-0000-4000-8000-000000000007',
+        'c0000000-0000-4000-8000-000000000003'
     ),
     -- Cố đô Huế (Văn hóa)
     (
-        'd0000000-0000-0000-0000-000000000008',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000008',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     -- TP. Hồ Chí Minh (Thành thị)
     (
-        'd0000000-0000-0000-0000-000000000009',
-        'c0000000-0000-0000-0000-000000000005'
+        'd0000000-0000-4000-8000-000000000009',
+        'c0000000-0000-4000-8000-000000000005'
     ),
     -- Phố cổ Hà Nội (Văn hóa, Thành thị)
     (
-        'd0000000-0000-0000-0000-000000000010',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000010',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     (
-        'd0000000-0000-0000-0000-000000000010',
-        'c0000000-0000-0000-0000-000000000005'
+        'd0000000-0000-4000-8000-000000000010',
+        'c0000000-0000-4000-8000-000000000005'
     ),
     -- Quần thể Tràng An (Thiên nhiên)
     (
-        'd0000000-0000-0000-0000-000000000011',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000011',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     -- Bà Nà Hills (Thành thị, Nghỉ dưỡng)
     (
-        'd0000000-0000-0000-0000-000000000012',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000012',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     (
-        'd0000000-0000-0000-0000-000000000012',
-        'c0000000-0000-0000-0000-000000000005'
+        'd0000000-0000-4000-8000-000000000012',
+        'c0000000-0000-4000-8000-000000000005'
     ),
     -- Mũi Né (Nghỉ dưỡng, Khám phá)
     (
-        'd0000000-0000-0000-0000-000000000013',
-        'c0000000-0000-0000-0000-000000000003'
+        'd0000000-0000-4000-8000-000000000013',
+        'c0000000-0000-4000-8000-000000000003'
     ),
     (
-        'd0000000-0000-0000-0000-000000000013',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000013',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     -- Côn Đảo (Nghỉ dưỡng, Thiên nhiên)
     (
-        'd0000000-0000-0000-0000-000000000014',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000014',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000014',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000014',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     -- Đà Lạt (Thiên nhiên, Nghỉ dưỡng)
     (
-        'd0000000-0000-0000-0000-000000000015',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000015',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     (
-        'd0000000-0000-0000-0000-000000000015',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000015',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     -- Thánh địa Mỹ Sơn (Văn hóa)
     (
-        'd0000000-0000-0000-0000-000000000016',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000016',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     -- Thác Bản Giốc (Thiên nhiên)
     (
-        'd0000000-0000-0000-0000-000000000017',
-        'c0000000-0000-0000-0000-000000000001'
+        'd0000000-0000-4000-8000-000000000017',
+        'c0000000-0000-4000-8000-000000000001'
     ),
     -- Hang Sơn Đoòng (Khám phá)
     (
-        'd0000000-0000-0000-0000-000000000018',
-        'c0000000-0000-0000-0000-000000000003'
+        'd0000000-0000-4000-8000-000000000018',
+        'c0000000-0000-4000-8000-000000000003'
     ),
     -- Địa đạo Củ Chi (Văn hóa)
     (
-        'd0000000-0000-0000-0000-000000000019',
-        'c0000000-0000-0000-0000-000000000002'
+        'd0000000-0000-4000-8000-000000000019',
+        'c0000000-0000-4000-8000-000000000002'
     ),
     -- Nha Trang (Nghỉ dưỡng, Thành thị)
     (
-        'd0000000-0000-0000-0000-000000000020',
-        'c0000000-0000-0000-0000-000000000004'
+        'd0000000-0000-4000-8000-000000000020',
+        'c0000000-0000-4000-8000-000000000004'
     ),
     (
-        'd0000000-0000-0000-0000-000000000020',
-        'c0000000-0000-0000-0000-000000000005'
+        'd0000000-0000-4000-8000-000000000020',
+        'c0000000-0000-4000-8000-000000000005'
     );
