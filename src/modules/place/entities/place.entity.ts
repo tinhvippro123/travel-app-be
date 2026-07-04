@@ -1,5 +1,5 @@
 import { Entity, Column, JoinTable, ManyToMany } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
+import { AbstractEntity } from '@common/entities/base.entity';
 import { PlaceStatus } from '@common/enums';
 import { PlaceCategory } from '@modules/place/entities/place-category.entity';
 

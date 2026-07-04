@@ -8,9 +8,9 @@ import {
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { IBookingService } from '../interfaces/booking-service.interface.js';
-import { CreateBookingDto } from '../dto/create-booking.dto.js';
-import { UpdateBookingDto } from '../dto/update-booking.dto.js';
+import { IBookingService } from '../interfaces/booking-service.interface';
+import { CreateBookingDto } from '../dto/create-booking.dto';
+import { UpdateBookingDto } from '../dto/update-booking.dto';
 
 @Controller('bookings')
 export class BookingController {

@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Booking } from '../entities/booking.entity.js';
-import { CreateBookingDto } from '../dto/create-booking.dto.js';
-import { UpdateBookingDto } from '../dto/update-booking.dto.js';
-import { IBookingService } from '../interfaces/booking-service.interface.js';
-import { IBookingRepository } from '../interfaces/booking-repository.interface.js';
-import { IPlaceService } from '../../place/interfaces/place-service.interface.js';
+import { Booking } from '../entities/booking.entity';
+import { CreateBookingDto } from '../dto/create-booking.dto';
+import { UpdateBookingDto } from '../dto/update-booking.dto';
+import { IBookingService } from '../interfaces/booking-service.interface';
+import { IBookingRepository } from '../interfaces/booking-repository.interface';
+import { IPlaceService } from '../../place/interfaces/place-service.interface';
 
 @Injectable()
 export class BookingService implements IBookingService {

@@ -1,5 +1,5 @@
-import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
-import { User } from '../entities/user.entity.js';
+import { IBaseRepository } from '@common/interfaces/base-repository.interface';
+import { User } from '../entities/user.entity';
 
 /**
  * Interface cho User Repository.

@@ -1,9 +1,9 @@
-import { IBaseService } from '@common/interfaces/base-service.interface.js';
+import { IBaseService } from '@common/interfaces/base-service.interface';
 import { PaginatedResultDto } from '@common/dto/pagination.dto';
 import { Place } from '@modules/place/entities';
 import { CreatePlaceDto, PlaceQueryDto } from '@modules/place/dto';
 import { UpdatePlaceDto } from '@modules/place/dto';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums/index';
 
 export abstract class IPlaceService extends IBaseService<
   Place,

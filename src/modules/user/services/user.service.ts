@@ -4,11 +4,11 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { User } from '../entities/user.entity.js';
-import { CreateUserDto } from '../dto/create-user.dto.js';
-import { UpdateUserDto } from '../dto/update-user.dto.js';
-import { IUserService } from '../interfaces/user-service.interface.js';
-import { IUserRepository } from '../interfaces/user-repository.interface.js';
+import { User } from '../entities/user.entity';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { IUserService } from '../interfaces/user-service.interface';
+import { IUserRepository } from '../interfaces/user-repository.interface';
 
 /**
  * Concrete implementation của IUserService.

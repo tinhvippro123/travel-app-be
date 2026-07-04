@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsEnum,
 } from 'class-validator';
-import { UserRole } from '@common/enums/index.js';
+import { UserRole } from '@common/enums/index';
 
 export class CreateUserDto {
   @IsEmail()

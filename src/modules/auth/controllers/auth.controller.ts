@@ -6,11 +6,11 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { AuthService } from '../services/auth.service.js';
-import { LoginDto } from '../dto/login.dto.js';
-import { RegisterDto } from '../dto/register.dto.js';
-import { Public } from '@common/decorators/index.js';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard.js';
+import { AuthService } from '../services/auth.service';
+import { LoginDto } from '../dto/login.dto';
+import { RegisterDto } from '../dto/register.dto';
+import { Public } from '@common/decorators/index';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {

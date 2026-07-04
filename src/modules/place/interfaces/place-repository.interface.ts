@@ -1,8 +1,8 @@
-import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
+import { IBaseRepository } from '@common/interfaces/base-repository.interface';
 import { PaginatedResultDto } from '@common/dto/pagination.dto';
 import { PlaceQueryDto } from '@modules/place/dto';
 import { Place } from '@modules/place/entities';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums/index';
 
 export abstract class IPlaceRepository extends IBaseRepository<Place> {
   abstract findPaginated(

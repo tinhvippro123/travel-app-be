@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
-import { User } from '../entities/user.entity.js';
-import { IUserRepository } from '../interfaces/user-repository.interface.js';
+import { User } from '../entities/user.entity';
+import { IUserRepository } from '../interfaces/user-repository.interface';
 
 /**
  * Concrete implementation của IUserRepository.
