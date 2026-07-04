@@ -13,6 +13,7 @@ import {
 import { IPlaceService } from '@modules/place/interfaces';
 import {
   CreatePlaceDto,
+  PlaceQueryDto,
   UpdatePlaceDto,
   UpdatePlaceStatusDto,
 } from '@modules/place/dto';
@@ -23,8 +24,8 @@ export class PlaceController {
   constructor(private readonly placeService: IPlaceService) {}
 
   @Get()
-  findAll() {
-    return this.placeService.findAll();
+  findAll(@Query() query: PlaceQueryDto) {
+    return this.placeService.findPaginated(query);
   }
 
   @Get('search')

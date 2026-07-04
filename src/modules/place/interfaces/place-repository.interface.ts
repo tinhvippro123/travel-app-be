@@ -1,8 +1,14 @@
 import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
+import { PaginatedResultDto } from '@common/dto/pagination.dto';
+import { PlaceQueryDto } from '@modules/place/dto';
 import { Place } from '@modules/place/entities';
 import { PlaceStatus } from '@common/enums/index.js';
 
 export abstract class IPlaceRepository extends IBaseRepository<Place> {
+  abstract findPaginated(
+    query: PlaceQueryDto,
+  ): Promise<PaginatedResultDto<Place>>;
+
   abstract existsById(id: string): Promise<boolean>;
 
   abstract findByStatus(status: PlaceStatus): Promise<Place[]>;

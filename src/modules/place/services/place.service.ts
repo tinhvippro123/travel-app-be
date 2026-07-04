@@ -1,12 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Place } from '@modules/place/entities';
-import { CreatePlaceDto, UpdatePlaceDto } from '@modules/place/dto';
+import {
+  CreatePlaceDto,
+  PlaceQueryDto,
+  UpdatePlaceDto,
+} from '@modules/place/dto';
 import {
   IPlaceCategoryService,
   IPlaceRepository,
   IPlaceService,
 } from '@modules/place/interfaces';
 import { PlaceStatus } from '@common/enums';
+import { PaginatedResultDto } from '@common/dto/pagination.dto';
 
 @Injectable()
 export class PlaceService implements IPlaceService {
@@ -17,6 +22,12 @@ export class PlaceService implements IPlaceService {
 
   async findAll(): Promise<Place[]> {
     return this.placeRepository.findAll();
+  }
+
+  async findPaginated(
+    query: PlaceQueryDto,
+  ): Promise<PaginatedResultDto<Place>> {
+    return this.placeRepository.findPaginated(query);
   }
 
   async findById(id: string): Promise<Place> {

@@ -1,6 +1,7 @@
 import { IBaseService } from '@common/interfaces/base-service.interface.js';
+import { PaginatedResultDto } from '@common/dto/pagination.dto';
 import { Place } from '@modules/place/entities';
-import { CreatePlaceDto } from '@modules/place/dto';
+import { CreatePlaceDto, PlaceQueryDto } from '@modules/place/dto';
 import { UpdatePlaceDto } from '@modules/place/dto';
 import { PlaceStatus } from '@common/enums/index.js';
 
@@ -9,6 +10,10 @@ export abstract class IPlaceService extends IBaseService<
   CreatePlaceDto,
   UpdatePlaceDto
 > {
+  abstract findPaginated(
+    query: PlaceQueryDto,
+  ): Promise<PaginatedResultDto<Place>>;
+
   abstract existsById(id: string): Promise<boolean>;
 
   abstract findByStatus(status: PlaceStatus): Promise<Place[]>;

@@ -6,6 +6,7 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
   Put,
 } from '@nestjs/common';
 import { IPlaceCategoryService } from '@modules/place/interfaces';
@@ -13,14 +14,15 @@ import {
   CreatePlaceCategoryDto,
   UpdatePlaceCategoryDto,
 } from '@modules/place/dto';
+import { PaginationDto } from '@common/dto';
 
 @Controller('place-categories')
 export class PlaceCategoryController {
   constructor(private readonly categoryService: IPlaceCategoryService) {}
 
   @Get()
-  findAll() {
-    return this.categoryService.findAll();
+  findAll(@Query() pagination: PaginationDto) {
+    return this.categoryService.findPaginated(pagination);
   }
 
   @Get(':id')

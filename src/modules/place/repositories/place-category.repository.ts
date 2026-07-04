@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, FindOptionsWhere, In, Repository } from 'typeorm';
 import { PlaceCategory } from '@modules/place/entities';
 import { IPlaceCategoryRepository } from '@modules/place/interfaces';
+import { PaginatedResultDto, PaginationDto } from '@common/dto';
 
 @Injectable()
 export class PlaceCategoryRepository implements IPlaceCategoryRepository {
@@ -13,6 +14,20 @@ export class PlaceCategoryRepository implements IPlaceCategoryRepository {
 
   async findAll(): Promise<PlaceCategory[]> {
     return this.categoryRepo.find();
+  }
+
+  async findPaginated(
+    pagination: PaginationDto,
+  ): Promise<PaginatedResultDto<PlaceCategory>> {
+    const page = pagination.page ?? 1;
+    const limit = pagination.limit ?? 10;
+    const [categories, total] = await this.categoryRepo.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { createdAt: 'DESC' },
+    });
+
+    return new PaginatedResultDto(categories, total, page, limit);
   }
 
   async findById(id: string): Promise<PlaceCategory | null> {

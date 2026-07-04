@@ -4,6 +4,8 @@ import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
 import { Place } from '@modules/place/entities';
 import { IPlaceRepository } from '@modules/place/interfaces';
 import { PlaceStatus } from '@common/enums';
+import { PaginatedResultDto } from '@common/dto/pagination.dto';
+import { PlaceQueryDto, PlaceSortOption } from '@modules/place/dto';
 
 @Injectable()
 export class PlaceRepository implements IPlaceRepository {
@@ -14,6 +16,58 @@ export class PlaceRepository implements IPlaceRepository {
 
   async findAll(): Promise<Place[]> {
     return this.placeRepo.find({ relations: { categories: true } });
+  }
+
+  async findPaginated(
+    query: PlaceQueryDto,
+  ): Promise<PaginatedResultDto<Place>> {
+    const page = query.page ?? 1;
+    const limit = query.limit ?? 10;
+    const builder = this.placeRepo
+      .createQueryBuilder('place')
+      .leftJoinAndSelect('place.categories', 'category');
+
+    if (query.categoryIds?.length) {
+      builder
+        .andWhere((qb) => {
+          const subQuery = qb
+            .subQuery()
+            .select('mapping.place_id')
+            .from('place_category_mappings', 'mapping')
+            .where('mapping.category_id IN (:...categoryIds)')
+            .groupBy('mapping.place_id')
+            .having('COUNT(DISTINCT mapping.category_id) = :categoryCount')
+            .getQuery();
+
+          return `place.id IN ${subQuery}`;
+        })
+        .setParameters({
+          categoryIds: query.categoryIds,
+          categoryCount: query.categoryIds.length,
+        });
+    }
+
+    switch (query.sort ?? PlaceSortOption.DEFAULT) {
+      case PlaceSortOption.NAME_ASC:
+        builder.orderBy('place.name', 'ASC');
+        break;
+      case PlaceSortOption.NAME_DESC:
+        builder.orderBy('place.name', 'DESC');
+        break;
+      case PlaceSortOption.UPDATED_NEWEST:
+        builder.orderBy('place.updatedAt', 'DESC');
+        break;
+      case PlaceSortOption.DEFAULT:
+        builder.orderBy('place.createdAt', 'DESC');
+        break;
+    }
+
+    const [places, total] = await builder
+      .skip((page - 1) * limit)
+      .take(limit)
+      .getManyAndCount();
+
+    return new PaginatedResultDto(places, total, page, limit);
   }
 
   async findById(id: string): Promise<Place | null> {

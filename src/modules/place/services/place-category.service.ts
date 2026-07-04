@@ -8,6 +8,7 @@ import {
   IPlaceCategoryRepository,
   IPlaceCategoryService,
 } from '@modules/place/interfaces';
+import { PaginatedResultDto, PaginationDto } from '@common/dto';
 
 @Injectable()
 export class PlaceCategoryService implements IPlaceCategoryService {
@@ -15,6 +16,12 @@ export class PlaceCategoryService implements IPlaceCategoryService {
 
   async findAll(): Promise<PlaceCategory[]> {
     return this.categoryRepository.findAll();
+  }
+
+  async findPaginated(
+    pagination: PaginationDto,
+  ): Promise<PaginatedResultDto<PlaceCategory>> {
+    return this.categoryRepository.findPaginated(pagination);
   }
 
   async findById(id: string): Promise<PlaceCategory> {
