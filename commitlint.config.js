@@ -25,6 +25,7 @@ export default {
         'user',
         'auth',
         'place',
+        'review',
         'booking',
         'common',
         'infra',
