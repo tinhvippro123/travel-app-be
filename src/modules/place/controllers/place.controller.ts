@@ -2,7 +2,7 @@ import {
   IPlaceService,
   CreatePlaceDto,
   UpdatePlaceDto,
-} from '@modules/place/index.js';
+} from '@modules/place';
 import {
   Controller,
   Get,

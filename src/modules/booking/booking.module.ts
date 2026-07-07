@@ -6,7 +6,7 @@ import { BookingRepository } from './repositories/booking.repository.js';
 import { BookingService } from './services/booking.service.js';
 import { IBookingRepository } from './interfaces/booking-repository.interface.js';
 import { IBookingService } from './interfaces/booking-service.interface.js';
-import { PlaceModule } from '../place/place.module.js';
+import { PlaceModule } from '@modules/place';
 
 @Module({
   imports: [

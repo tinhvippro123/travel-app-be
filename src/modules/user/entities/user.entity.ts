@@ -1,5 +1,5 @@
-import { Role, LocalAccount } from '@modules/user/index.js';
-import { Session } from '@modules/auth/index.js';
+import { Role, LocalAccount } from '@modules/user';
+import { Session } from '@modules/auth';
 import { Place } from '@modules/place/entities/place.entity.js';
 import {
   Entity,

@@ -1,4 +1,4 @@
-import { User, IUserRepository } from '@modules/user/index.js';
+import { User, IUserRepository } from '@modules/user';
 import { Place } from '@modules/place/entities/place.entity.js';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

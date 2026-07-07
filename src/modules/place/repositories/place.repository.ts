@@ -1,4 +1,4 @@
-import { Place, IPlaceRepository } from '@modules/place/index.js';
+import { Place, IPlaceRepository } from '@modules/place';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

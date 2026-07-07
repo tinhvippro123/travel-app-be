@@ -2,7 +2,7 @@ import { Controller, Get, Put, Body, UseGuards } from '@nestjs/common';
 import { IContactService } from '../interfaces/contact-service.interface.js';
 import { UpdateContactDto } from '../dto/update-contact.dto.js';
 import { ContactResponseDto } from '../dto/contact-response.dto.js';
-import { JwtAuthGuard, RolesGuard } from '@modules/auth/index.js';
+import { JwtAuthGuard, RolesGuard } from '@modules/auth';
 import { Roles } from '@common/decorators/index.js';
 import { UserRole } from '@common/enums/index.js';
 

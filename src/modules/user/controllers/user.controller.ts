@@ -4,8 +4,8 @@ import {
   UpdateUserDto,
   UpdateProfileDto,
   UserResponseDto,
-} from '@modules/user/index.js';
-import { JwtAuthGuard, RolesGuard, CurrentUser } from '@modules/auth/index.js';
+} from '@modules/user';
+import { JwtAuthGuard, RolesGuard, CurrentUser } from '@modules/auth';
 import { Roles } from '@common/decorators/index.js';
 import { UserRole } from '@common/enums/index.js';
 import type { JwtPayload } from '@modules/auth/strategies/jwt.strategy.js';

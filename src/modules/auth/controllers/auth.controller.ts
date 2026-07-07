@@ -5,10 +5,14 @@ import {
   JwtAuthGuard,
 } from '@modules/auth/index.js';
 import { AuthService } from '../services/auth.service.js';
+import { ChangePasswordDto } from '../dto/change-password.dto.js';
+import type { JwtPayload } from '../strategies/jwt.strategy.js';
+import { CurrentUser } from '../decorators/current-user.decorator.js';
 import {
   Controller,
   Post,
   Get,
+  Put,
   Body,
   Request,
   UseGuards,
@@ -51,5 +55,15 @@ export class AuthController {
       await this.authService.logout(token);
     }
     return { success: true, message: 'Logged out successfully' };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put('change-password')
+  async changePassword(
+    @CurrentUser() userPayload: JwtPayload,
+    @Body() dto: ChangePasswordDto,
+  ) {
+    await this.authService.changePassword(userPayload.sub, dto);
+    return { success: true, message: 'Đổi mật khẩu thành công' };
   }
 }

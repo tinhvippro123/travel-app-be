@@ -3,7 +3,7 @@ import {
   CreateUserDto,
   UpdateUserDto,
   UpdateProfileDto,
-} from '@modules/user/index.js';
+} from '@modules/user';
 import { Place } from '@modules/place/entities/place.entity.js';
 import { IBaseService } from '@common/interfaces/base-service.interface.js';
 

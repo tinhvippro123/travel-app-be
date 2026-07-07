@@ -3,8 +3,8 @@ import {
   CreateRoleDto,
   UpdateRoleDto,
   RoleResponseDto,
-} from '@modules/user/index.js';
-import { JwtAuthGuard, RolesGuard } from '@modules/auth/index.js';
+} from '@modules/user';
+import { JwtAuthGuard, RolesGuard } from '@modules/auth';
 import { Roles } from '@common/decorators/index.js';
 import { UserRole } from '@common/enums/index.js';
 import {

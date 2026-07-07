@@ -1,9 +1,11 @@
-export * from '@modules/auth/auth.module.js';
-export { LoginDto } from '@modules/auth/dto/login.dto.js';
-export { RegisterDto } from '@modules/auth/dto/register.dto.js';
-export { AuthResponseDto } from '@modules/auth/dto/auth-response.dto.js';
+export * from './auth.module.js';
+export { LoginDto } from './dto/login.dto.js';
+export { RegisterDto } from './dto/register.dto.js';
+export { AuthResponseDto } from './dto/auth-response.dto.js';
+export { ChangePasswordDto } from './dto/change-password.dto.js';
 
-export { CurrentUser } from '@modules/auth/decorators/current-user.decorator.js';
-export { Session } from '@modules/auth/entities/session.entity.js';
-export { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard.js';
-export { RolesGuard } from '@modules/auth/guards/roles.guard.js';
+export { CurrentUser } from './decorators/current-user.decorator.js';
+export { Session } from './entities/session.entity.js';
+export { JwtAuthGuard } from './guards/jwt-auth.guard.js';
+export { RolesGuard } from './guards/roles.guard.js';
+export * from './strategies/jwt.strategy.js';

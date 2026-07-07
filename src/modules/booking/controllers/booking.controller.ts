@@ -2,7 +2,7 @@ import {
   IBookingService,
   CreateBookingDto,
   UpdateBookingDto,
-} from '@modules/booking/index.js';
+} from '@modules/booking';
 import {
   Controller,
   Get,

@@ -6,7 +6,7 @@ import {
   IUserService,
   IRoleRepository,
   IRoleService,
-} from '@modules/user/index.js';
+} from '@modules/user';
 import { UserController } from './controllers/user.controller.js';
 import { RoleController } from './controllers/role.controller.js';
 import { UserRepository } from './repositories/user.repository.js';

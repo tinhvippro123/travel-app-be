@@ -1,4 +1,4 @@
-import { User } from '@modules/user/index.js';
+import { User } from '@modules/user';
 import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
 /** * Interface cho User Repository. * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain. */ import { Place } from '@modules/place/entities/place.entity.js';
 

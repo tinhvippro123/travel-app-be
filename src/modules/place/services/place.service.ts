@@ -4,7 +4,7 @@ import {
   UpdatePlaceDto,
   IPlaceService,
   IPlaceRepository,
-} from '@modules/place/index.js';
+} from '@modules/place';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PlaceStatus } from '@common/enums/index.js';
 @Injectable()
