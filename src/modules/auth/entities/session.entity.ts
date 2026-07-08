@@ -1,6 +1,6 @@
 import { User } from '@modules/user';
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
+import { AbstractEntity } from '@common/entities';
 
 @Entity('sessions')
 export class Session extends AbstractEntity {

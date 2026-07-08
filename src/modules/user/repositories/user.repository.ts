@@ -1,5 +1,5 @@
 import { User, IUserRepository } from '@modules/user';
-import { Place } from '@modules/place/entities/place.entity.js';
+import { Place } from '@modules/place/entities';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

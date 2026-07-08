@@ -1,6 +1,6 @@
 import { User } from '@modules/user';
-import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
-/** * Interface cho User Repository. * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain. */ import { Place } from '@modules/place/entities/place.entity.js';
+import { IBaseRepository } from '@common/interfaces';
+/** * Interface cho User Repository. * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain. */ import { Place } from '@modules/place/entities';
 
 export abstract class IUserRepository extends IBaseRepository<User> {
   abstract findByEmail(email: string): Promise<User | null>;

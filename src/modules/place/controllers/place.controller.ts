@@ -14,7 +14,7 @@ import {
   Query,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums';
 @Controller('places')
 export class PlaceController {
   constructor(private readonly placeService: IPlaceService) {}

@@ -7,7 +7,7 @@ import {
   IsInt,
   Min,
 } from 'class-validator';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums';
 
 export class CreatePlaceDto {
   @IsString()

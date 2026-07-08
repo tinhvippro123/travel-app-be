@@ -3,9 +3,9 @@ import {
   IPlaceRepository,
   IPlaceService,
 } from '@modules/place';
-import { PlaceController } from './controllers/place.controller.js';
-import { PlaceRepository } from './repositories/place.repository.js';
-import { PlaceService } from './services/place.service.js';
+import { PlaceController } from '@modules/place/controllers';
+import { PlaceRepository } from '@modules/place/repositories';
+import { PlaceService } from '@modules/place/services';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({

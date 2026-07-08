@@ -1,5 +1,5 @@
-import { Role } from '@modules/user/entities/role.entity.js';
-import { IBaseRepository } from '@common/interfaces/base-repository.interface.js';
+import { Role } from '@modules/user/entities';
+import { IBaseRepository } from '@common/interfaces';
 
 export abstract class IRoleRepository extends IBaseRepository<Role> {
   abstract findByKey(key: string): Promise<Role | null>;

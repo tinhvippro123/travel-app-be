@@ -5,8 +5,8 @@ import {
   RoleResponseDto,
 } from '@modules/user';
 import { JwtAuthGuard, RolesGuard } from '@modules/auth';
-import { Roles } from '@common/decorators/index.js';
-import { UserRole } from '@common/enums/index.js';
+import { Roles } from '@common/decorators';
+import { UserRole } from '@common/enums';
 import {
   Controller,
   Get,

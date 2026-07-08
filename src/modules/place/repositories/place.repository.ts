@@ -2,7 +2,7 @@ import { Place, IPlaceRepository } from '@modules/place';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums';
 @Injectable()
 export class PlaceRepository implements IPlaceRepository {
   constructor(

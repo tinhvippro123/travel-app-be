@@ -1,2 +1,2 @@
-export { PaginationDto, PaginatedResultDto } from './pagination.dto.js';
-export { ApiResponseDto } from './api-response.dto.js';
+export * from './api-response.dto.js';
+export * from './pagination.dto.js';

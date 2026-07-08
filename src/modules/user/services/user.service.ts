@@ -8,7 +8,7 @@ import {
   IUserService,
   IUserRepository,
 } from '@modules/user';
-import { Place } from '@modules/place/entities/place.entity.js';
+import { Place } from '@modules/place/entities';
 import { RegisterDto } from '@modules/auth';
 import {
   Injectable,

@@ -16,6 +16,22 @@ services:
     networks:
       - travel_app_network
 
+  backend:
+    build:
+      context: .
+    container_name: travel-app-be-back
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - travel_app_network
+    depends_on:
+      - postgres
+      - redis
+
   redis:
     image: redis:7-alpine
     container_name: travel_app_redis

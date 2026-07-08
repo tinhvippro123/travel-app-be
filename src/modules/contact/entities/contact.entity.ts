@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
+import { AbstractEntity } from '@common/entities';
 
 @Entity('contacts')
 export class Contact extends AbstractEntity {

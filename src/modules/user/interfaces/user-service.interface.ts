@@ -4,8 +4,8 @@ import {
   UpdateUserDto,
   UpdateProfileDto,
 } from '@modules/user';
-import { Place } from '@modules/place/entities/place.entity.js';
-import { IBaseService } from '@common/interfaces/base-service.interface.js';
+import { Place } from '@modules/place/entities';
+import { IBaseService } from '@common/interfaces';
 
 /** * Interface cho User Service. * Extends IBaseService (CRUD chung) và thêm method riêng cho User domain. */
 export abstract class IUserService extends IBaseService<

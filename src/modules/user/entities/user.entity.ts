@@ -1,6 +1,6 @@
 import { Role, LocalAccount } from '@modules/user';
 import { Session } from '@modules/auth';
-import { Place } from '@modules/place/entities/place.entity.js';
+import { Place } from '@modules/place/entities';
 import {
   Entity,
   Column,
@@ -11,7 +11,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
+import { AbstractEntity } from '@common/entities';
 
 @Entity('users')
 export class User extends AbstractEntity {

@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToMany } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
-import { PlaceStatus } from '@common/enums/index.js';
-import { User } from '@modules/user/entities/user.entity.js';
+import { AbstractEntity } from '@common/entities';
+import { PlaceStatus } from '@common/enums';
+import { User } from '@modules/user/entities';
 
 @Entity('places')
 export class Place extends AbstractEntity {

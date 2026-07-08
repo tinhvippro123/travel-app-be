@@ -6,9 +6,9 @@ import {
   UserResponseDto,
 } from '@modules/user';
 import { JwtAuthGuard, RolesGuard, CurrentUser } from '@modules/auth';
-import { Roles } from '@common/decorators/index.js';
-import { UserRole } from '@common/enums/index.js';
-import type { JwtPayload } from '@modules/auth/strategies/jwt.strategy.js';
+import { Roles } from '@common/decorators';
+import { UserRole } from '@common/enums';
+import type { JwtPayload } from '@modules/auth/strategies';
 import {
   Controller,
   Get,

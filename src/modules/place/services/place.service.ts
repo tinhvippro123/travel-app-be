@@ -6,7 +6,7 @@ import {
   IPlaceRepository,
 } from '@modules/place';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PlaceStatus } from '@common/enums/index.js';
+import { PlaceStatus } from '@common/enums';
 @Injectable()
 export class PlaceService implements IPlaceService {
   constructor(private readonly placeRepository: IPlaceRepository) {}

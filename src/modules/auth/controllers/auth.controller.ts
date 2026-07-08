@@ -3,8 +3,8 @@ import {
   RegisterDto,
   AuthResponseDto,
   JwtAuthGuard,
-} from '@modules/auth/index.js';
-import { AuthService } from '../services/auth.service.js';
+} from '@modules/auth';
+import { AuthService } from '@modules/auth/services';
 import { ChangePasswordDto } from '../dto/change-password.dto.js';
 import type { JwtPayload } from '../strategies/jwt.strategy.js';
 import { CurrentUser } from '../decorators/current-user.decorator.js';
@@ -19,8 +19,8 @@ import {
   Req,
 } from '@nestjs/common';
 import type { Request as ExpressRequest } from 'express';
-import { Public } from '@common/decorators/index.js';
-import { UserResponseDto } from '@modules/user/index.js';
+import { Public } from '@common/decorators';
+import { UserResponseDto } from '@modules/user';
 
 @Controller('auth')
 export class AuthController {
