@@ -11,7 +11,8 @@ export enum BookingStatus {
 }
 
 export enum PlaceStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
   DRAFT = 'draft',
-  PUBLISHED = 'published',
   ARCHIVED = 'archived',
 }

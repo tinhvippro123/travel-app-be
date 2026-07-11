@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';
-import { Booking } from '../entities/booking.entity.js';
-import { IBookingRepository } from '../interfaces/booking-repository.interface.js';
+import { Booking } from '../entities/booking.entity';
+import { IBookingRepository } from '../interfaces/booking-repository.interface';
 
 @Injectable()
 export class BookingRepository implements IBookingRepository {

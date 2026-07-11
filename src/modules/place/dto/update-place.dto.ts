@@ -1,59 +1,33 @@
-import {
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsEnum,
-  IsDateString,
-  IsInt,
-  Min,
-} from 'class-validator';
-import { PlaceStatus } from '@common/enums/index.js';
+import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { PlaceStatus } from '@common/enums';
 
 export class UpdatePlaceDto {
   @IsOptional()
   @IsString()
-  title?: string;
+  name?: string;
 
   @IsOptional()
   @IsString()
   description?: string;
 
   @IsOptional()
-  @IsNumber()
-  @Min(0)
-  price?: number;
-
-  @IsOptional()
-  @IsNumber()
-  @Min(0)
-  discountPrice?: number;
+  @IsString()
+  location?: string;
 
   @IsOptional()
   @IsString()
-  duration?: string;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  maxParticipants?: number;
+  image?: string;
 
   @IsOptional()
   @IsString()
-  destination?: string;
-
-  @IsOptional()
-  @IsString()
-  departureLocation?: string;
+  content?: string;
 
   @IsOptional()
   @IsEnum(PlaceStatus)
   status?: PlaceStatus;
 
   @IsOptional()
-  @IsDateString()
-  startDate?: string;
-
-  @IsOptional()
-  @IsDateString()
-  endDate?: string;
+  @IsArray()
+  @IsUUID('4', { each: true })
+  categoryIds?: string[];
 }

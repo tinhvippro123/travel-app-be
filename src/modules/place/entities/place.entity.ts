@@ -1,51 +1,35 @@
-import { Entity, Column } from 'typeorm';
-import { AbstractEntity } from '@common/entities/base.entity.js';
-import { PlaceStatus } from '@common/enums/index.js';
+import { Entity, Column, JoinTable, ManyToMany } from 'typeorm';
+import { AbstractEntity } from '@common/entities/base.entity';
+import { PlaceStatus } from '@common/enums';
+import { PlaceCategory } from '@modules/place/entities/place-category.entity';
 
 @Entity('places')
 export class Place extends AbstractEntity {
   @Column()
-  title: string;
+  name: string;
 
-  @Column({ type: 'text' })
-  description: string;
-
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
-  price: number;
-
-  @Column({
-    name: 'discount_price',
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
-    nullable: true,
-  })
-  discountPrice?: number;
+  @Column({ type: 'text', nullable: true })
+  description?: string;
 
   @Column()
-  duration: string; // vd: "3 ngày 2 đêm"
+  location: string;
 
-  @Column({ name: 'max_participants' })
-  maxParticipants: number;
+  @Column({ nullable: true })
+  image?: string;
 
-  @Column()
-  destination: string;
+  @Column({ type: 'text', nullable: true })
+  content?: string;
 
-  @Column({ name: 'departure_location' })
-  departureLocation: string;
-
-  @Column({ name: 'cover_image', nullable: true })
-  coverImage?: string;
-
-  @Column('simple-array', { nullable: true })
-  images?: string[];
-
-  @Column({ type: 'enum', enum: PlaceStatus, default: PlaceStatus.DRAFT })
+  @Column({ type: 'enum', enum: PlaceStatus, default: PlaceStatus.ACTIVE })
   status: PlaceStatus;
 
-  @Column({ name: 'start_date', type: 'timestamp', nullable: true })
-  startDate?: Date;
-
-  @Column({ name: 'end_date', type: 'timestamp', nullable: true })
-  endDate?: Date;
+  @ManyToMany(() => PlaceCategory, (category) => category.places, {
+    cascade: false,
+  })
+  @JoinTable({
+    name: 'place_category_mappings',
+    joinColumn: { name: 'place_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
+  })
+  categories?: PlaceCategory[];
 }
