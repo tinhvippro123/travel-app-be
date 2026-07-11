@@ -21,7 +21,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     configService: ConfigService,
     private readonly userService: IUserService,
-    @InjectRepository(Session) private readonly sessionRepo: Repository<Session>,
+    @InjectRepository(Session)
+    private readonly sessionRepo: Repository<Session>,
   ) {
     const secret = configService.get<string>('JWT_SECRET');
     if (!secret) {
@@ -46,7 +47,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { tokenHash, status: 'ACTIVE' },
     });
     if (!session) {
-      console.log('JwtStrategy: Session is invalid or revoked. Hash:', tokenHash);
+      console.log(
+        'JwtStrategy: Session is invalid or revoked. Hash:',
+        tokenHash,
+      );
       throw new UnauthorizedException('Session is invalid or revoked');
     }
     const user = await this.userService.findById(payload.sub);

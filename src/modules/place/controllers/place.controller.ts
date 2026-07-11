@@ -1,8 +1,4 @@
-import {
-  IPlaceService,
-  CreatePlaceDto,
-  UpdatePlaceDto,
-} from '@modules/place';
+import { IPlaceService, CreatePlaceDto, UpdatePlaceDto } from '@modules/place';
 import {
   Controller,
   Get,

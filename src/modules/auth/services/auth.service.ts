@@ -12,7 +12,11 @@ import {
   LocalAccount,
   UserResponseDto,
 } from '@modules/user';
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  BadRequestException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -28,7 +32,7 @@ export class AuthService {
     private readonly localAccountRepo: Repository<LocalAccount>,
     @InjectRepository(Session)
     private readonly sessionRepo: Repository<Session>,
-  ) { }
+  ) {}
   /**
    * Đăng nhập — kiểm tra email + password, trả về JWT token.
    */
@@ -63,7 +67,7 @@ export class AuthService {
     // vì hàm registerNewUser chỉ tạo mới user mà chưa populate relation "role".
     // Điều này là bắt buộc để build payload cho JWT token có chứa đúng role.
     const populatedUser = await this.userService.findById(user.id);
-    return await this.generateToken(populatedUser!);
+    return await this.generateToken(populatedUser);
   }
   async getProfile(userId: string) {
     return this.userService.findById(userId);
@@ -118,10 +122,15 @@ export class AuthService {
     });
 
     if (!localAccount) {
-      throw new BadRequestException('Tài khoản không được hỗ trợ đổi mật khẩu.');
+      throw new BadRequestException(
+        'Tài khoản không được hỗ trợ đổi mật khẩu.',
+      );
     }
 
-    const isPasswordValid = await bcrypt.compare(dto.oldPassword, localAccount.passwordHash);
+    const isPasswordValid = await bcrypt.compare(
+      dto.oldPassword,
+      localAccount.passwordHash,
+    );
 
     if (!isPasswordValid) {
       throw new BadRequestException('Mật khẩu cũ không chính xác.');

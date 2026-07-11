@@ -1,8 +1,4 @@
-import {
-  Place,
-  IPlaceRepository,
-  IPlaceService,
-} from '@modules/place';
+import { Place, IPlaceRepository, IPlaceService } from '@modules/place';
 import { PlaceController } from '@modules/place/controllers';
 import { PlaceRepository } from '@modules/place/repositories';
 import { PlaceService } from '@modules/place/services';
