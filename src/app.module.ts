@@ -14,6 +14,7 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { PlaceModule } from '@modules/place/place.module';
 import { BookingModule } from '@modules/booking/booking.module';
 import { ContactModule } from '@modules/contact/contact.module';
+import { ReviewModule } from '@modules/review';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { ContactModule } from '@modules/contact/contact.module';
     PlaceModule,
     BookingModule,
     ContactModule,
+    ReviewModule,
   ],
 })
 export class AppModule {}

@@ -26,5 +26,6 @@
       "@infrastructure/*": ["src/infrastructure/*"],
       "@modules/*": ["src/modules/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "test/**/*"]
 }
