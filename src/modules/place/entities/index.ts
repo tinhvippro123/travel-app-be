@@ -1,1 +1,2 @@
-export * from './place.entity.js';
+export { Place } from './place.entity';
+export { PlaceCategory } from './place-category.entity';

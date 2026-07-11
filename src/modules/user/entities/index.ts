@@ -1,3 +1,3 @@
-export * from './local-account.entity.js';
-export * from './role.entity.js';
-export * from './user.entity.js';
+export * from './local-account.entity';
+export * from './role.entity';
+export * from './user.entity';

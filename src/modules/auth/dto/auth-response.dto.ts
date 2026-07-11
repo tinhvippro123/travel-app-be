@@ -1,7 +1,6 @@
-import { UserResponseDto } from '@modules/user';
+import { UserResponseDto } from '@modules/user/index';
 
 export class AuthResponseDto {
   accessToken: string;
-  refreshToken: string;
   user: UserResponseDto;
 }

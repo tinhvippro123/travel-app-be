@@ -1,1 +1,1 @@
-export * from './contact.entity.js';
+export * from './contact.entity';

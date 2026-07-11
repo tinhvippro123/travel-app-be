@@ -3,42 +3,34 @@ import {
   RegisterDto,
   AuthResponseDto,
   Session,
-  ChangePasswordDto,
-} from '@modules/auth';
+} from '@modules/auth/index';
 import {
   IUserRepository,
   IUserService,
   User,
   LocalAccount,
   UserResponseDto,
-} from '@modules/user';
-import {
-  Injectable,
-  UnauthorizedException,
-  BadRequestException,
-} from '@nestjs/common';
+} from '@modules/user/index';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectDataSource } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import type { JwtPayload } from '@modules/auth';
+import type { JwtPayload } from '../strategies/jwt.strategy';
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userRepository: IUserRepository,
     private readonly userService: IUserService,
     private readonly jwtService: JwtService,
-    @InjectRepository(LocalAccount)
-    private readonly localAccountRepo: Repository<LocalAccount>,
-    @InjectRepository(Session)
-    private readonly sessionRepo: Repository<Session>,
+    @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
   /**
    * Đăng nhập — kiểm tra email + password, trả về JWT token.
    */
   async login(dto: LoginDto): Promise<AuthResponseDto> {
     // Tìm LocalAccount theo email
-    const localAccount = await this.localAccountRepo.findOne({
+    const localAccount = await this.dataSource.manager.findOne(LocalAccount, {
       where: { email: dto.email },
       relations: {
         user: {
@@ -63,9 +55,7 @@ export class AuthService {
    */
   async register(dto: RegisterDto): Promise<AuthResponseDto> {
     const user = await this.userService.registerNewUser(dto);
-    // Giải thích: Query lại user bằng findById để load kèm theo entity Role (dùng TypeORM relations),
-    // vì hàm registerNewUser chỉ tạo mới user mà chưa populate relation "role".
-    // Điều này là bắt buộc để build payload cho JWT token có chứa đúng role.
+    // Cần query lại để lấy role nếu registerNewUser chưa gán populate đầy đủ
     const populatedUser = await this.userService.findById(user.id);
     return await this.generateToken(populatedUser);
   }
@@ -78,7 +68,8 @@ export class AuthService {
   async logout(token: string) {
     const crypto = await import('crypto');
     const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
-    await this.sessionRepo.update(
+    await this.dataSource.manager.update(
+      Session,
       { tokenHash: tokenHash, status: 'ACTIVE' },
       { status: 'REVOKED', revokedAt: new Date() },
     );
@@ -94,54 +85,22 @@ export class AuthService {
       role: roleKey,
     };
     const token = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
-
     // Hash JWT bằng SHA256 thay vì bcrypt để có thể tra cứu khi logout/validate
     const crypto = await import('crypto');
     const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
     // Tính toán thời gian hết hạn (ví dụ +1 ngày)
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + 1);
-    const session = this.sessionRepo.create({
+    const session = this.dataSource.manager.create(Session, {
       user: user,
       tokenHash: tokenHash,
       status: 'ACTIVE',
       expiresAt: expiresAt,
     });
-    await this.sessionRepo.save(session);
+    await this.dataSource.manager.save(session);
     return {
       accessToken: token,
-      refreshToken: refreshToken,
       user: new UserResponseDto(user),
     };
-  }
-
-  async changePassword(userId: string, dto: ChangePasswordDto): Promise<void> {
-    const localAccount = await this.localAccountRepo.findOne({
-      where: { user: { id: userId } },
-    });
-
-    if (!localAccount) {
-      throw new BadRequestException(
-        'Tài khoản không được hỗ trợ đổi mật khẩu.',
-      );
-    }
-
-    const isPasswordValid = await bcrypt.compare(
-      dto.oldPassword,
-      localAccount.passwordHash,
-    );
-
-    if (!isPasswordValid) {
-      throw new BadRequestException('Mật khẩu cũ không chính xác.');
-    }
-
-    const salt = await bcrypt.genSalt();
-    const newPasswordHash = await bcrypt.hash(dto.newPassword, salt);
-
-    await this.localAccountRepo.update(
-      { userId: localAccount.userId },
-      { passwordHash: newPasswordHash },
-    );
   }
 }

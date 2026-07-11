@@ -1,10 +1,10 @@
 import { Controller, Get, Put, Body, UseGuards } from '@nestjs/common';
-import { IContactService } from '../interfaces/contact-service.interface.js';
-import { UpdateContactDto } from '../dto/update-contact.dto.js';
-import { ContactResponseDto } from '../dto/contact-response.dto.js';
-import { JwtAuthGuard, RolesGuard } from '@modules/auth';
-import { Roles } from '@common/decorators';
-import { UserRole } from '@common/enums';
+import { IContactService } from '../interfaces/contact-service.interface';
+import { UpdateContactDto } from '../dto/update-contact.dto';
+import { ContactResponseDto } from '../dto/contact-response.dto';
+import { JwtAuthGuard, RolesGuard } from '@modules/auth/index';
+import { Roles } from '@common/decorators/index';
+import { UserRole } from '@common/enums/index';
 
 @Controller('contacts')
 export class ContactController {

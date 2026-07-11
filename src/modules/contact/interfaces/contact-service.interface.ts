@@ -1,5 +1,5 @@
-import { Contact } from '../entities/contact.entity.js';
-import { UpdateContactDto } from '../dto/update-contact.dto.js';
+import { Contact } from '../entities/contact.entity';
+import { UpdateContactDto } from '../dto/update-contact.dto';
 
 export abstract class IContactService {
   abstract getGlobalContact(): Promise<Contact>;

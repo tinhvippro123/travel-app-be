@@ -1,1 +1,1 @@
-export * from './session.entity.js';
+export * from './session.entity';

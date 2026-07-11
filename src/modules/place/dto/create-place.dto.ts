@@ -1,52 +1,31 @@
-import {
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsEnum,
-  IsDateString,
-  IsInt,
-  Min,
-} from 'class-validator';
+import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { PlaceStatus } from '@common/enums';
 
 export class CreatePlaceDto {
   @IsString()
-  title: string;
-
-  @IsString()
-  description: string;
-
-  @IsNumber()
-  @Min(0)
-  price: number;
+  name: string;
 
   @IsOptional()
-  @IsNumber()
-  @Min(0)
-  discountPrice?: number;
+  @IsString()
+  description?: string;
 
   @IsString()
-  duration: string;
+  location: string;
 
-  @IsInt()
-  @Min(1)
-  maxParticipants: number;
-
+  @IsOptional()
   @IsString()
-  destination: string;
+  image?: string;
 
+  @IsOptional()
   @IsString()
-  departureLocation: string;
+  content?: string;
 
   @IsOptional()
   @IsEnum(PlaceStatus)
   status?: PlaceStatus;
 
   @IsOptional()
-  @IsDateString()
-  startDate?: string;
-
-  @IsOptional()
-  @IsDateString()
-  endDate?: string;
+  @IsArray()
+  @IsUUID('4', { each: true })
+  categoryIds?: string[];
 }

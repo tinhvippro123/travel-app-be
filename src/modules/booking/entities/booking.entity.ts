@@ -1,8 +1,8 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { AbstractEntity } from '@common/entities';
-import { BookingStatus } from '@common/enums';
-import { User } from '@modules/user/entities';
-import { Place } from '@modules/place/entities';
+import { AbstractEntity } from '@common/entities/base.entity';
+import { BookingStatus } from '@common/enums/index';
+import { User } from '@modules/user/entities/user.entity';
+import { Place } from '@modules/place/entities/place.entity';
 
 @Entity('bookings')
 export class Booking extends AbstractEntity {

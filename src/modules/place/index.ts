@@ -1,4 +1,15 @@
-export * from './place.module.js';
-export * from './dto/index.js';
-export * from './interfaces/index.js';
-export * from './entities/index.js';
+export * from './place.module';
+export {
+  CreatePlaceCategoryDto,
+  CreatePlaceDto,
+  UpdatePlaceCategoryDto,
+  UpdatePlaceDto,
+  UpdatePlaceStatusDto,
+} from './dto';
+export {
+  IPlaceCategoryRepository,
+  IPlaceCategoryService,
+  IPlaceRepository,
+  IPlaceService,
+} from './interfaces';
+export { Place, PlaceCategory } from './entities';

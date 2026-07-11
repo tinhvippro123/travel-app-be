@@ -1,7 +1,7 @@
-import { Contact } from '../entities/contact.entity.js';
-import { IContactRepository } from '../interfaces/contact-repository.interface.js';
-import { IContactService } from '../interfaces/contact-service.interface.js';
-import { UpdateContactDto } from '../dto/update-contact.dto.js';
+import { Contact } from '../entities/contact.entity';
+import { IContactRepository } from '../interfaces/contact-repository.interface';
+import { IContactService } from '../interfaces/contact-service.interface';
+import { UpdateContactDto } from '../dto/update-contact.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

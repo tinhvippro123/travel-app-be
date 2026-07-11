@@ -3,10 +3,10 @@ import {
   CreateRoleDto,
   UpdateRoleDto,
   RoleResponseDto,
-} from '@modules/user';
-import { JwtAuthGuard, RolesGuard } from '@modules/auth';
-import { Roles } from '@common/decorators';
-import { UserRole } from '@common/enums';
+} from '@modules/user/index';
+import { JwtAuthGuard, RolesGuard } from '@modules/auth/index';
+import { Roles } from '@common/decorators/index';
+import { UserRole } from '@common/enums/index';
 import {
   Controller,
   Get,

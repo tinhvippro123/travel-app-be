@@ -1,5 +1,5 @@
-import { Contact } from '../entities/contact.entity.js';
-import { IContactRepository } from '../interfaces/contact-repository.interface.js';
+import { Contact } from '../entities/contact.entity';
+import { IContactRepository } from '../interfaces/contact-repository.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

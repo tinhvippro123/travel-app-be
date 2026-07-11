@@ -4,11 +4,11 @@ import {
   UpdateUserDto,
   UpdateProfileDto,
   UserResponseDto,
-} from '@modules/user';
-import { JwtAuthGuard, RolesGuard, CurrentUser } from '@modules/auth';
-import { Roles } from '@common/decorators';
-import { UserRole } from '@common/enums';
-import type { JwtPayload } from '@modules/auth/strategies';
+} from '@modules/user/index';
+import { JwtAuthGuard, RolesGuard, CurrentUser } from '@modules/auth/index';
+import { Roles } from '@common/decorators/index';
+import { UserRole } from '@common/enums/index';
+import type { JwtPayload } from '@modules/auth/strategies/jwt.strategy';
 import {
   Controller,
   Get,

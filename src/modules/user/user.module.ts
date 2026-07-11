@@ -6,13 +6,13 @@ import {
   IUserService,
   IRoleRepository,
   IRoleService,
-} from '@modules/user';
-import { UserController } from '@modules/user/controllers';
-import { RoleController } from '@modules/user/controllers';
-import { UserRepository } from '@modules/user/repositories';
-import { RoleRepository } from '@modules/user/repositories';
-import { UserService } from '@modules/user/services';
-import { RoleService } from '@modules/user/services';
+} from '@modules/user/index';
+import { UserController } from './controllers/user.controller';
+import { RoleController } from './controllers/role.controller';
+import { UserRepository } from './repositories/user.repository';
+import { RoleRepository } from './repositories/role.repository';
+import { UserService } from './services/user.service';
+import { RoleService } from './services/role.service';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({

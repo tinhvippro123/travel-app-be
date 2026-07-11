@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { configValidationSchema } from './infrastructure/config/config.validation.js';
+import { configValidationSchema } from './infrastructure/config/config.validation';
 
 // Infrastructure modules
-import { DatabaseModule } from './infrastructure/database/database.module.js';
-import { RedisModule } from './infrastructure/redis/redis.module.js';
-import { CloudinaryModule } from './infrastructure/cloudinary/cloudinary.module.js';
-import { MailModule } from './infrastructure/mail/mail.module.js';
+import { DatabaseModule } from './infrastructure/database/database.module';
+import { RedisModule } from './infrastructure/redis/redis.module';
+import { CloudinaryModule } from './infrastructure/cloudinary/cloudinary.module';
+import { MailModule } from './infrastructure/mail/mail.module';
 
 // Feature modules
-import { UserModule } from '@modules/user';
-import { AuthModule } from '@modules/auth';
-import { PlaceModule } from '@modules/place';
-import { BookingModule } from '@modules/booking';
-import { ContactModule } from '@modules/contact';
+import { UserModule } from '@modules/user/user.module';
+import { AuthModule } from '@modules/auth/auth.module';
+import { PlaceModule } from '@modules/place/place.module';
+import { BookingModule } from '@modules/booking/booking.module';
+import { ContactModule } from '@modules/contact/contact.module';
 
 @Module({
   imports: [

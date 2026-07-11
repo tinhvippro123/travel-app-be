@@ -1,2 +1,2 @@
-export * from './role.repository.js';
-export * from './user.repository.js';
+export * from './role.repository';
+export * from './user.repository';

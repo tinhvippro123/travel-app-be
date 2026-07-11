@@ -3,24 +3,20 @@ import {
   RegisterDto,
   AuthResponseDto,
   JwtAuthGuard,
-} from '@modules/auth';
-import { AuthService } from '@modules/auth/services';
-import { ChangePasswordDto } from '../dto/change-password.dto.js';
-import type { JwtPayload } from '../strategies/jwt.strategy.js';
-import { CurrentUser } from '../decorators/current-user.decorator.js';
+} from '@modules/auth/index';
+import { AuthService } from '../services/auth.service';
 import {
   Controller,
   Post,
   Get,
-  Put,
   Body,
   Request,
   UseGuards,
   Req,
 } from '@nestjs/common';
 import type { Request as ExpressRequest } from 'express';
-import { Public } from '@common/decorators';
-import { UserResponseDto } from '@modules/user';
+import { Public } from '@common/decorators/index';
+import { UserResponseDto } from '@modules/user/index';
 
 @Controller('auth')
 export class AuthController {
@@ -55,15 +51,5 @@ export class AuthController {
       await this.authService.logout(token);
     }
     return { success: true, message: 'Logged out successfully' };
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Put('change-password')
-  async changePassword(
-    @CurrentUser() userPayload: JwtPayload,
-    @Body() dto: ChangePasswordDto,
-  ) {
-    await this.authService.changePassword(userPayload.sub, dto);
-    return { success: true, message: 'Đổi mật khẩu thành công' };
   }
 }

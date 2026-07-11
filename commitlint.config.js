@@ -31,7 +31,8 @@ export default {
         'config',
         'deps',
         'agent',
-        'release'
+        'release',
+        'data'
       ],
     ],
   },

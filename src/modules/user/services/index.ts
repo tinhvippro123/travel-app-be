@@ -1,2 +1,2 @@
-export * from './role.service.js';
-export * from './user.service.js';
+export * from './role.service';
+export * from './user.service';

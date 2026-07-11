@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { Contact } from '../entities/contact.entity.js';
+import { Contact } from '../entities/contact.entity';
 
 export class ContactResponseDto {
   @Expose()

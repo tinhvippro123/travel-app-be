@@ -1,2 +1,2 @@
-export * from './role.controller.js';
-export * from './user.controller.js';
+export * from './role.controller';
+export * from './user.controller';

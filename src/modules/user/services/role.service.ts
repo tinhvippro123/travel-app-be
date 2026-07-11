@@ -5,7 +5,7 @@ import {
   IRoleService,
   IRoleRepository,
   User,
-} from '@modules/user';
+} from '@modules/user/index';
 import {
   Injectable,
   NotFoundException,

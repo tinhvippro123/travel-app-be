@@ -1,1 +1,2 @@
-export * from './place.service.js';
+export { PlaceCategoryService } from './place-category.service';
+export { PlaceService } from './place.service';

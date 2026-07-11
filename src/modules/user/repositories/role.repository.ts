@@ -1,4 +1,4 @@
-import { Role, IRoleRepository } from '@modules/user';
+import { Role, IRoleRepository } from '@modules/user/index';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial, FindOptionsWhere } from 'typeorm';

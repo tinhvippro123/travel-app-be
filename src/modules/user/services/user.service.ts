@@ -7,9 +7,9 @@ import {
   UpdateProfileDto,
   IUserService,
   IUserRepository,
-} from '@modules/user';
-import { Place } from '@modules/place/entities';
-import { RegisterDto } from '@modules/auth';
+} from '@modules/user/index';
+import { Place } from '@modules/place/entities/place.entity';
+import { RegisterDto } from '@modules/auth/index';
 import {
   Injectable,
   NotFoundException,

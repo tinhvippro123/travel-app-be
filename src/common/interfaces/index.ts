@@ -1,2 +1,2 @@
-export * from './base-repository.interface.js';
-export * from './base-service.interface.js';
+export { IBaseRepository } from './base-repository.interface';
+export { IBaseService } from './base-service.interface';
