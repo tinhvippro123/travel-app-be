@@ -1,7 +1,7 @@
-import { IBaseService } from '@common/interfaces/base-service.interface.js';
-import { Booking } from '../entities/booking.entity.js';
-import { CreateBookingDto } from '../dto/create-booking.dto.js';
-import { UpdateBookingDto } from '../dto/update-booking.dto.js';
+import { IBaseService } from '@common/interfaces/base-service.interface';
+import { Booking } from '../entities/booking.entity';
+import { CreateBookingDto } from '../dto/create-booking.dto';
+import { UpdateBookingDto } from '../dto/update-booking.dto';
 
 export abstract class IBookingService extends IBaseService<
   Booking,

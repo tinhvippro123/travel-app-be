@@ -1,19 +1,31 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Place } from './entities/place.entity.js';
-import { PlaceController } from './controllers/place.controller.js';
-import { PlaceRepository } from './repositories/place.repository.js';
-import { PlaceService } from './services/place.service.js';
-import { IPlaceRepository } from './interfaces/place-repository.interface.js';
-import { IPlaceService } from './interfaces/place-service.interface.js';
+import { Place, PlaceCategory } from '@modules/place/entities';
+import {
+  PlaceCategoryController,
+  PlaceController,
+} from '@modules/place/controllers';
+import {
+  PlaceCategoryRepository,
+  PlaceRepository,
+} from '@modules/place/repositories';
+import { PlaceCategoryService, PlaceService } from '@modules/place/services';
+import {
+  IPlaceCategoryRepository,
+  IPlaceCategoryService,
+  IPlaceRepository,
+  IPlaceService,
+} from '@modules/place/interfaces';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Place])],
-  controllers: [PlaceController],
+  imports: [TypeOrmModule.forFeature([Place, PlaceCategory])],
+  controllers: [PlaceCategoryController, PlaceController],
   providers: [
+    { provide: IPlaceCategoryRepository, useClass: PlaceCategoryRepository },
+    { provide: IPlaceCategoryService, useClass: PlaceCategoryService },
     { provide: IPlaceRepository, useClass: PlaceRepository },
     { provide: IPlaceService, useClass: PlaceService },
   ],
-  exports: [IPlaceService],
+  exports: [IPlaceCategoryService, IPlaceService],
 })
 export class PlaceModule {}

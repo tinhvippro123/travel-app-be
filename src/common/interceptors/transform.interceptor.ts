@@ -5,7 +5,7 @@ import {
   CallHandler,
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
-import { ApiResponseDto } from '../dto/api-response.dto.js';
+import { ApiResponseDto } from '../dto/api-response.dto';
 
 /**
  * Global interceptor — tự động wrap tất cả response

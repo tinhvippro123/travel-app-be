@@ -1,17 +1,33 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Place } from '../entities/place.entity.js';
-import { CreatePlaceDto } from '../dto/create-place.dto.js';
-import { UpdatePlaceDto } from '../dto/update-place.dto.js';
-import { IPlaceService } from '../interfaces/place-service.interface.js';
-import { IPlaceRepository } from '../interfaces/place-repository.interface.js';
-import { PlaceStatus } from '@common/enums/index.js';
+import { Place } from '@modules/place/entities';
+import {
+  CreatePlaceDto,
+  PlaceQueryDto,
+  UpdatePlaceDto,
+} from '@modules/place/dto';
+import {
+  IPlaceCategoryService,
+  IPlaceRepository,
+  IPlaceService,
+} from '@modules/place/interfaces';
+import { PlaceStatus } from '@common/enums';
+import { PaginatedResultDto } from '@common/dto/pagination.dto';
 
 @Injectable()
 export class PlaceService implements IPlaceService {
-  constructor(private readonly placeRepository: IPlaceRepository) {}
+  constructor(
+    private readonly placeRepository: IPlaceRepository,
+    private readonly categoryService: IPlaceCategoryService,
+  ) {}
 
   async findAll(): Promise<Place[]> {
     return this.placeRepository.findAll();
+  }
+
+  async findPaginated(
+    query: PlaceQueryDto,
+  ): Promise<PaginatedResultDto<Place>> {
+    return this.placeRepository.findPaginated(query);
   }
 
   async findById(id: string): Promise<Place> {
@@ -22,25 +38,54 @@ export class PlaceService implements IPlaceService {
     return place;
   }
 
+  async existsById(id: string): Promise<boolean> {
+    return this.placeRepository.existsById(id);
+  }
+
   async findByStatus(status: PlaceStatus): Promise<Place[]> {
     return this.placeRepository.findByStatus(status);
   }
 
-  async findByDestination(destination: string): Promise<Place[]> {
-    return this.placeRepository.findByDestination(destination);
+  async findByLocation(location: string): Promise<Place[]> {
+    return this.placeRepository.findByLocation(location);
   }
 
   async create(dto: CreatePlaceDto): Promise<Place> {
-    return this.placeRepository.create(dto);
+    const { categoryIds, ...placeData } = dto;
+    const categories = await this.categoryService.findByIds(categoryIds ?? []);
+
+    return this.placeRepository.create({
+      ...placeData,
+      categories,
+    });
   }
 
   async update(id: string, dto: UpdatePlaceDto): Promise<Place> {
-    await this.findById(id);
-    return this.placeRepository.update(id, dto);
+    await this.assertExists(id);
+    const { categoryIds, ...placeData } = dto;
+    const data: Partial<Place> = { ...placeData };
+
+    if (categoryIds !== undefined) {
+      data.categories = await this.categoryService.findByIds(categoryIds);
+    }
+
+    return this.placeRepository.update(id, data);
+  }
+
+  async updateStatus(id: string, status: PlaceStatus): Promise<Place> {
+    await this.assertExists(id);
+    return this.placeRepository.updateStatus(id, status);
   }
 
   async delete(id: string): Promise<void> {
-    await this.findById(id);
+    await this.assertExists(id);
     await this.placeRepository.softDelete(id);
+  }
+
+  private async assertExists(id: string): Promise<void> {
+    const exists = await this.existsById(id);
+    if (!exists) {
+      throw new NotFoundException(`Place with id "${id}" not found`);
+    }
   }
 }

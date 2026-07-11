@@ -6,26 +6,31 @@ import {
   Delete,
   Body,
   Param,
+  Patch,
   Query,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { IPlaceService } from '../interfaces/place-service.interface.js';
-import { CreatePlaceDto } from '../dto/create-place.dto.js';
-import { UpdatePlaceDto } from '../dto/update-place.dto.js';
-import { PlaceStatus } from '@common/enums/index.js';
+import { IPlaceService } from '@modules/place/interfaces';
+import {
+  CreatePlaceDto,
+  PlaceQueryDto,
+  UpdatePlaceDto,
+  UpdatePlaceStatusDto,
+} from '@modules/place/dto';
+import { PlaceStatus } from '@common/enums';
 
 @Controller('places')
 export class PlaceController {
   constructor(private readonly placeService: IPlaceService) {}
 
   @Get()
-  findAll() {
-    return this.placeService.findAll();
+  findAll(@Query() query: PlaceQueryDto) {
+    return this.placeService.findPaginated(query);
   }
 
   @Get('search')
-  searchByDestination(@Query('destination') destination: string) {
-    return this.placeService.findByDestination(destination);
+  searchByLocation(@Query('location') location: string) {
+    return this.placeService.findByLocation(location);
   }
 
   @Get('status/:status')
@@ -46,6 +51,14 @@ export class PlaceController {
   @Put(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdatePlaceDto) {
     return this.placeService.update(id, dto);
+  }
+
+  @Patch(':id/status')
+  updateStatus(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdatePlaceStatusDto,
+  ) {
+    return this.placeService.updateStatus(id, dto.status);
   }
 
   @Delete(':id')
