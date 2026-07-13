@@ -1,16 +1,22 @@
 import {
+  LoginDto,
+  RegisterDto,
+  AuthResponseDto,
+  JwtAuthGuard,
+} from '@modules/auth/index';
+import { AuthService } from '../services/auth.service';
+import {
   Controller,
   Post,
   Get,
   Body,
   Request,
   UseGuards,
+  Req,
 } from '@nestjs/common';
-import { AuthService } from '../services/auth.service';
-import { LoginDto } from '../dto/login.dto';
-import { RegisterDto } from '../dto/register.dto';
+import type { Request as ExpressRequest } from 'express';
 import { Public } from '@common/decorators/index';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { UserResponseDto } from '@modules/user/index';
 
 @Controller('auth')
 export class AuthController {
@@ -18,19 +24,32 @@ export class AuthController {
 
   @Public()
   @Post('login')
-  login(@Body() dto: LoginDto) {
-    return this.authService.login(dto);
+  async login(@Body() dto: LoginDto): Promise<AuthResponseDto> {
+    return await this.authService.login(dto);
   }
 
   @Public()
   @Post('register')
-  register(@Body() dto: RegisterDto) {
-    return this.authService.register(dto);
+  async register(@Body() dto: RegisterDto): Promise<AuthResponseDto> {
+    return await this.authService.register(dto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Request() req: { user: { id: string } }) {
-    return this.authService.getProfile(req.user.id);
+  async getProfile(
+    @Request() req: { user: { id: string } },
+  ): Promise<UserResponseDto> {
+    const user = await this.authService.getProfile(req.user.id);
+    return new UserResponseDto(user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('logout')
+  async logout(@Req() request: ExpressRequest) {
+    const token = request.headers.authorization?.replace('Bearer ', '').trim();
+    if (token) {
+      await this.authService.logout(token);
+    }
+    return { success: true, message: 'Logged out successfully' };
   }
 }

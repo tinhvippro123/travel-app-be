@@ -2,6 +2,7 @@ import { Entity, Column, JoinTable, ManyToMany } from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity';
 import { PlaceStatus } from '@common/enums';
 import { PlaceCategory } from '@modules/place/entities/place-category.entity';
+import { User } from '@modules/user/entities/user.entity';
 
 @Entity('places')
 export class Place extends AbstractEntity {
@@ -32,4 +33,7 @@ export class Place extends AbstractEntity {
     inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
   })
   categories?: PlaceCategory[];
+
+  @ManyToMany(() => User, (user) => user.favoritePlaces)
+  favoritedBy: User[];
 }

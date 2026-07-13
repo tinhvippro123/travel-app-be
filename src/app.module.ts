@@ -1,18 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { configValidationSchema } from '@infrastructure/config/config.validation';
+import { configValidationSchema } from './infrastructure/config/config.validation';
 
 // Infrastructure modules
-import { DatabaseModule } from '@infrastructure/database/database.module';
-import { RedisModule } from '@infrastructure/redis/redis.module';
-import { CloudinaryModule } from '@infrastructure/cloudinary/cloudinary.module';
-import { MailModule } from '@infrastructure/mail/mail.module';
+import { DatabaseModule } from './infrastructure/database/database.module';
+import { RedisModule } from './infrastructure/redis/redis.module';
+import { CloudinaryModule } from './infrastructure/cloudinary/cloudinary.module';
+import { MailModule } from './infrastructure/mail/mail.module';
 
 // Feature modules
 import { UserModule } from '@modules/user/user.module';
 import { AuthModule } from '@modules/auth/auth.module';
-import { PlaceModule } from '@modules/place';
+import { PlaceModule } from '@modules/place/place.module';
 import { BookingModule } from '@modules/booking/booking.module';
+import { ContactModule } from '@modules/contact/contact.module';
 import { ReviewModule } from '@modules/review';
 
 @Module({
@@ -35,6 +36,7 @@ import { ReviewModule } from '@modules/review';
     AuthModule,
     PlaceModule,
     BookingModule,
+    ContactModule,
     ReviewModule,
   ],
 })

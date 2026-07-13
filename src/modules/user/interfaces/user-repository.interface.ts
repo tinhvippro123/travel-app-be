@@ -1,12 +1,10 @@
+import { User } from '@modules/user/index';
 import { IBaseRepository } from '@common/interfaces/base-repository.interface';
-import { User } from '../entities/user.entity';
+/** * Interface cho User Repository. * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain. */ import { Place } from '@modules/place/entities/place.entity';
 
-/**
- * Interface cho User Repository.
- * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain.
- */
 export abstract class IUserRepository extends IBaseRepository<User> {
   abstract findByEmail(email: string): Promise<User | null>;
-
-  abstract findByEmailWithPassword(email: string): Promise<User | null>;
+  abstract addFavorite(userId: string, placeId: string): Promise<void>;
+  abstract removeFavorite(userId: string, placeId: string): Promise<void>;
+  abstract getFavorites(userId: string): Promise<Place[]>;
 }

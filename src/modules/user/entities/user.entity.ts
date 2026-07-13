@@ -1,27 +1,47 @@
-import { Entity, Column } from 'typeorm';
+import { Role, LocalAccount } from '@modules/user/index';
+import { Session } from '@modules/auth/index';
+import { Place } from '@modules/place/entities/place.entity';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  OneToOne,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { AbstractEntity } from '@common/entities/base.entity';
-import { UserRole } from '@common/enums/index';
 
 @Entity('users')
 export class User extends AbstractEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false })
-  password: string;
-
   @Column({ name: 'full_name' })
   fullName: string;
 
-  @Column({ nullable: true })
-  phone?: string;
-
-  @Column({ nullable: true })
+  @Column({ name: 'avatar_url', nullable: true })
   avatar?: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
-  role: UserRole;
+  @Column({ default: 'ACTIVE' })
+  status: string;
 
-  @Column({ name: 'is_active', default: true })
-  isActive: boolean;
+  @ManyToOne(() => Role)
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
+
+  @OneToOne(() => LocalAccount, (localAccount) => localAccount.user)
+  localAccount: LocalAccount;
+
+  @OneToMany(() => Session, (session) => session.user)
+  sessions: Session[];
+
+  @ManyToMany(() => Place, (place) => place.favoritedBy)
+  @JoinTable({
+    name: 'favorite_places',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'place_id', referencedColumnName: 'id' },
+  })
+  favoritePlaces: Place[];
 }

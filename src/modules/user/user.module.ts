@@ -1,20 +1,30 @@
+import {
+  User,
+  Role,
+  LocalAccount,
+  IUserRepository,
+  IUserService,
+  IRoleRepository,
+  IRoleService,
+} from '@modules/user/index';
+import { UserController } from './controllers/user.controller';
+import { RoleController } from './controllers/role.controller';
+import { UserRepository } from './repositories/user.repository';
+import { RoleRepository } from './repositories/role.repository';
+import { UserService } from './services/user.service';
+import { RoleService } from './services/role.service';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { UserController } from './controllers/user.controller';
-import { UserRepository } from './repositories/user.repository';
-import { UserService } from './services/user.service';
-import { IUserRepository } from './interfaces/user-repository.interface';
-import { IUserService } from './interfaces/user-service.interface';
-
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  controllers: [UserController],
+  imports: [TypeOrmModule.forFeature([User, Role, LocalAccount])],
+  controllers: [UserController, RoleController],
   providers: [
     // Map abstract class → concrete class cho DI
     { provide: IUserRepository, useClass: UserRepository },
     { provide: IUserService, useClass: UserService },
+    { provide: IRoleRepository, useClass: RoleRepository },
+    { provide: IRoleService, useClass: RoleService },
   ],
-  exports: [IUserService, IUserRepository],
+  exports: [IUserService, IUserRepository, IRoleService, IRoleRepository],
 })
 export class UserModule {}
