@@ -16,7 +16,11 @@ import { IUserRepository } from '../interfaces/user-repository.interface.js';
  */
 @Injectable()
 export class UserService implements IUserService {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userRepository: IUserRepository) { }
+
+  async existsByEmail(email: string): Promise<boolean> {
+    return this.userRepository.existsByEmail(email);
+  }
 
   async findAll(): Promise<User[]> {
     return this.userRepository.findAll();
@@ -39,19 +43,7 @@ export class UserService implements IUserService {
   }
 
   async create(dto: CreateUserDto): Promise<User> {
-    // Check email tồn tại chưa
-    const existing = await this.userRepository.findByEmail(dto.email);
-    if (existing) {
-      throw new ConflictException(`Email "${dto.email}" already exists`);
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(dto.password, 10);
-
-    return this.userRepository.create({
-      ...dto,
-      password: hashedPassword,
-    });
+    return this.userRepository.create(dto);
   }
 
   async update(id: string, dto: UpdateUserDto): Promise<User> {
