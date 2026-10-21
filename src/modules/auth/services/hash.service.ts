@@ -8,10 +8,7 @@ export class HashService implements IHashService {
         return hash(password, 12);
     }
 
-    async compare(
-        password: string,
-        hashedPassword: string,
-    ): Promise<boolean> {
+    async compare(password: string, hashedPassword: string): Promise<boolean> {
         return compare(password, hashedPassword);
     }
 }
