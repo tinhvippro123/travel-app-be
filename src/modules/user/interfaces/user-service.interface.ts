@@ -9,4 +9,6 @@ import { UpdateUserDto } from '../dto/update-user.dto.js';
  */
 export abstract class IUserService extends IBaseService<User, CreateUserDto, UpdateUserDto> {
   abstract findByEmail(email: string): Promise<User>;
+
+  abstract existsByEmail(email: string): Promise<boolean>;
 }

@@ -13,7 +13,13 @@ export class UserRepository implements IUserRepository {
   constructor(
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
-  ) {}
+  ) { }
+
+  async existsByEmail(email: string): Promise<boolean> {
+    return this.userRepo.exists({
+      where: { email },
+    });
+  }
 
   async findAll(): Promise<User[]> {
     return this.userRepo.find();
@@ -29,14 +35,6 @@ export class UserRepository implements IUserRepository {
 
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepo.findOneBy({ email } as FindOptionsWhere<User>);
-  }
-
-  async findByEmailWithPassword(email: string): Promise<User | null> {
-    return this.userRepo
-      .createQueryBuilder('user')
-      .addSelect('user.password')
-      .where('user.email = :email', { email })
-      .getOne();
   }
 
   async create(data: DeepPartial<User>): Promise<User> {

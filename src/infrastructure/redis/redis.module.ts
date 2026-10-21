@@ -1,14 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
+import { RedisProvider, REDIS_CLIENT } from './redis.provider.js';
 
-/**
- * Redis module — placeholder cho cache service.
- * Khi cần dùng Redis, cài thêm:
- *   npm install @nestjs/cache-manager cache-manager cache-manager-ioredis-yet ioredis
- * rồi config CacheModule.registerAsync ở đây.
- */
+@Global()
 @Module({
-  imports: [],
-  providers: [],
-  exports: [],
+  providers: [RedisProvider],
+  exports: [RedisProvider, REDIS_CLIENT],
 })
 export class RedisModule {}

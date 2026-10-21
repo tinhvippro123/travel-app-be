@@ -2,6 +2,11 @@ export enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
 }
+export enum AccountStatus {
+  ACTIVE = 'active',
+  BANNED = 'banned',
+  DELETED = 'deleted',
+}
 
 export enum BookingStatus {
   PENDING = 'pending',

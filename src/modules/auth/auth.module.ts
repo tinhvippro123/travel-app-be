@@ -8,10 +8,14 @@ import { JwtStrategy } from './strategies/jwt.strategy.js';
 import { JwtAuthGuard } from './guards/jwt-auth.guard.js';
 import { RolesGuard } from './guards/roles.guard.js';
 import { UserModule } from '../user/user.module.js';
+import { OtpModule } from '../otp/otp.module.js';
+import { MailModule } from '../../infrastructure/mail/mail.module.js';
 
 @Module({
   imports: [
     UserModule,
+    OtpModule,
+    MailModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],

@@ -13,6 +13,7 @@ import { UserModule } from './modules/user/user.module.js';
 import { AuthModule } from './modules/auth/auth.module.js';
 import { TourModule } from './modules/tour/tour.module.js';
 import { BookingModule } from './modules/booking/booking.module.js';
+import { OtpModule } from './modules/otp/otp.module.js';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { BookingModule } from './modules/booking/booking.module.js';
     AuthModule,
     TourModule,
     BookingModule,
+    OtpModule,
   ],
 })
 export class AppModule {}

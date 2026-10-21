@@ -6,7 +6,7 @@ import { User } from '../entities/user.entity.js';
  * Extends IBaseRepository (CRUD chung) và thêm method riêng cho User domain.
  */
 export abstract class IUserRepository extends IBaseRepository<User> {
-  abstract findByEmail(email: string): Promise<User | null>;
+  abstract existsByEmail(email: string): Promise<boolean>;
 
-  abstract findByEmailWithPassword(email: string): Promise<User | null>;
+  abstract findByEmail(email: string): Promise<User | null>;
 }

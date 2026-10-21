@@ -9,12 +9,11 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { IUserService } from '../interfaces/user-service.interface.js';
-import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: IUserService) {}
+  constructor(private readonly userService: IUserService) { }
 
   @Get()
   findAll() {
@@ -24,11 +23,6 @@ export class UserController {
   @Get(':id')
   findById(@Param('id', ParseUUIDPipe) id: string) {
     return this.userService.findById(id);
-  }
-
-  @Post()
-  create(@Body() dto: CreateUserDto) {
-    return this.userService.create(dto);
   }
 
   @Put(':id')
