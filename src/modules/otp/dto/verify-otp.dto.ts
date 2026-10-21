@@ -12,5 +12,5 @@ export class VerifyOtpDto {
 
   @IsEnum(OtpType)
   @IsOptional()
-  type?: OtpType;
+  type?: OtpType = OtpType.REGISTER;
 }

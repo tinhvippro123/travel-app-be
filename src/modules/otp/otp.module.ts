@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { MailModule } from '../../infrastructure/mail/mail.module.js';
-import { Otp } from './entities/otp.entity.js';
+import { RedisModule } from '../../infrastructure/redis/redis.module.js';
 import { OtpController } from './controllers/otp.controller.js';
 import { OtpService } from './services/otp.service.js';
 import { OtpRepository } from './repositories/otp.repository.js';
@@ -13,7 +12,7 @@ import { IOtpGenerator } from './interfaces/otp.generator.interface.js';
 import { IOtpDeliveryService } from './interfaces/otp.delivery.interface.js';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Otp]), MailModule],
+  imports: [MailModule, RedisModule],
   controllers: [OtpController],
   providers: [
     { provide: IOtpRepository, useClass: OtpRepository },

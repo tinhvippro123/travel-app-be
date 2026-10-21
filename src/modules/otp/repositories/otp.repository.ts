@@ -1,72 +1,45 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { MoreThan, Repository } from 'typeorm';
+import { Inject, Injectable } from '@nestjs/common';
+import { Redis } from 'ioredis';
 import { IOtpRepository } from '../interfaces/otp.repository.interface.js';
 import { Otp, OtpType } from '../entities/otp.entity.js';
+import { REDIS_CLIENT } from '../../../infrastructure/redis/redis.provider.js';
 
 @Injectable()
 export class OtpRepository implements IOtpRepository {
   constructor(
-    @InjectRepository(Otp)
-    private readonly repo: Repository<Otp>,
-  ) {}
+    @Inject(REDIS_CLIENT)
+    private readonly redis: Redis,
+  ) { }
 
-  async saveOtp(target: string, code: string, expiresAt: Date, type: OtpType): Promise<Otp> {
-    const otp = this.repo.create({
-      target,
+  private getKey(target: string, type: OtpType): string {
+    return `otp:${type}:${target}`;
+  }
+
+  async saveOtp(target: string, code: string, type: OtpType, ttl: number): Promise<void> {
+    const key = this.getKey(target, type);
+    await this.redis.hset(key, {
       code,
-      expiresAt,
       type,
-      isUsed: false,
-      attempts: 0,
     });
-    return this.repo.save(otp);
+    await this.redis.expire(key, ttl);
   }
 
-  async findLatestValidOtp(target: string, type: OtpType): Promise<Otp | null> {
-    return this.repo.findOne({
-      where: {
-        target,
-        type,
-        isUsed: false,
-        expiresAt: MoreThan(new Date()),
-      },
-      order: {
-        createdAt: 'DESC',
-      },
+  async findOtp(target: string, type: OtpType): Promise<Otp | null> {
+    const key = this.getKey(target, type);
+    const data = await this.redis.hgetall(key);
+
+    if (!data || !data.code) {
+      return null;
+    }
+
+    return new Otp({
+      code: data.code,
+      type: data.type as OtpType,
     });
   }
 
-  async markAsUsed(id: string): Promise<void> {
-    await this.repo.update(id, { isUsed: true });
-  }
-
-  async incrementAttempts(id: string): Promise<void> {
-    await this.repo.increment({ id }, 'attempts', 1);
-  }
-
-  async invalidatePreviousOtps(target: string, type: OtpType): Promise<void> {
-    await this.repo.update(
-      {
-        target,
-        type,
-        isUsed: false,
-      },
-      {
-        isUsed: true,
-      },
-    );
-  }
-
-  async deleteExpired(): Promise<void> {
-    await this.repo
-      .createQueryBuilder()
-      .delete()
-      .from(Otp)
-      .where('expires_at < :now OR is_used = :isUsed', {
-        now: new Date(),
-        isUsed: true,
-      })
-      .execute();
+  async deleteOtp(target: string, type: OtpType): Promise<void> {
+    const key = this.getKey(target, type);
+    await this.redis.del(key);
   }
 }

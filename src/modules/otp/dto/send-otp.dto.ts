@@ -8,5 +8,5 @@ export class SendOtpDto {
 
   @IsEnum(OtpType)
   @IsOptional()
-  type?: OtpType;
+  type?: OtpType = OtpType.REGISTER;
 }
