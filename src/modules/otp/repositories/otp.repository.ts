@@ -9,13 +9,18 @@ export class OtpRepository implements IOtpRepository {
   constructor(
     @Inject(REDIS_CLIENT)
     private readonly redis: Redis,
-  ) { }
+  ) {}
 
   private getKey(target: string, type: OtpType): string {
     return `otp:${type}:${target}`;
   }
 
-  async saveOtp(target: string, code: string, type: OtpType, ttl: number): Promise<void> {
+  async saveOtp(
+    target: string,
+    code: string,
+    type: OtpType,
+    ttl: number,
+  ): Promise<void> {
     const key = this.getKey(target, type);
     await this.redis.hset(key, {
       code,

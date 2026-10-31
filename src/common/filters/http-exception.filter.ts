@@ -26,7 +26,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const errorMessage =
       typeof exceptionResponse === 'string'
         ? exceptionResponse
-        : (exceptionResponse as Record<string, unknown>).message || exception.message;
+        : (exceptionResponse as Record<string, unknown>).message ||
+          exception.message;
 
     this.logger.error(
       `${request.method} ${request.url} - ${status}: ${JSON.stringify(errorMessage)}`,

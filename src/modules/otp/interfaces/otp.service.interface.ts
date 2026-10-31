@@ -4,10 +4,7 @@ export abstract class IOtpService {
   /**
    * Tạo OTP và gửi đến target.
    */
-  abstract sendOtp(
-    target: string,
-    type?: OtpType,
-  ): Promise<void>;
+  abstract sendOtp(target: string, type?: OtpType): Promise<void>;
 
   /**
    * Xác minh OTP; nếu hợp lệ thì xóa OTP khỏi Redis.

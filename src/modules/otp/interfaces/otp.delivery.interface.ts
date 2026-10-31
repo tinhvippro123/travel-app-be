@@ -5,5 +5,9 @@ export abstract class IOtpDeliveryService {
    * @param otp Mã OTP
    * @param context Thông tin mở rộng (loại OTP, subject, metadata...)
    */
-  abstract sendOtp(target: string, otp: string, context?: Record<string, any>): Promise<void>;
+  abstract sendOtp(
+    target: string,
+    otp: string,
+    context?: Record<string, any>,
+  ): Promise<void>;
 }

@@ -14,16 +14,10 @@ export abstract class IOtpRepository {
   /**
    * Lấy OTP theo target và type.
    */
-  abstract findOtp(
-    target: string,
-    type: OtpType,
-  ): Promise<Otp | null>;
+  abstract findOtp(target: string, type: OtpType): Promise<Otp | null>;
 
   /**
    * Xóa OTP sau khi xác thực thành công.
    */
-  abstract deleteOtp(
-    target: string,
-    type: OtpType,
-  ): Promise<void>;
+  abstract deleteOtp(target: string, type: OtpType): Promise<void>;
 }

@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Post,
   Put,
   Delete,
   Body,
@@ -13,7 +12,7 @@ import { UpdateUserDto } from '../dto/update-user.dto.js';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: IUserService) { }
+  constructor(private readonly userService: IUserService) {}
 
   @Get()
   findAll() {
@@ -26,10 +25,7 @@ export class UserController {
   }
 
   @Put(':id')
-  update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() dto: UpdateUserDto,
-  ) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateUserDto) {
     return this.userService.update(id, dto);
   }
 

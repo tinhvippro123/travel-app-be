@@ -7,7 +7,7 @@ import { OtpType } from '../entities/otp.entity.js';
 
 @Controller('otp')
 export class OtpController {
-  constructor(private readonly otpService: IOtpService) { }
+  constructor(private readonly otpService: IOtpService) {}
 
   /**
    * Endpoint gửi mã OTP (hiện tại ưu tiên hỗ trợ quy trình đăng ký tài khoản)

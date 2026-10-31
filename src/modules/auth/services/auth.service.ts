@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { IUserService } from '../../user/interfaces/user-service.interface.js';
 import { LoginDto, RegisterDto, TokenResponse } from '../dto/auth.dto.js';
 import { IAuthService } from '../interfaces/auth.service.interface.js';
@@ -16,13 +16,15 @@ export class AuthService implements IAuthService {
     private readonly hashService: IHashService,
     private readonly otpService: IOtpService,
     private readonly mailService: MailService,
-  ) { }
+  ) {}
 
   /**
    * Đăng nhập — kiểm tra email + password, trả về JWT token.
    */
-  async login(dto: LoginDto): Promise<TokenResponse> {
-    return new TokenResponse();
+  login(dto: LoginDto): Promise<TokenResponse> {
+    // Login is still a placeholder in this registration PR.
+    void dto;
+    return Promise.resolve(new TokenResponse());
   }
 
   /**
@@ -38,7 +40,11 @@ export class AuthService implements IAuthService {
     }
 
     // Kiểm tra otp mail
-    const isOtpValid = await this.otpService.verifyOtp(dto.email, dto.otp, OtpType.REGISTER);
+    const isOtpValid = await this.otpService.verifyOtp(
+      dto.email,
+      dto.otp,
+      OtpType.REGISTER,
+    );
 
     if (!isOtpValid) {
       throw new UnauthorizedException('Invalid OTP');
@@ -55,7 +61,10 @@ export class AuthService implements IAuthService {
     });
 
     // Tạo token
-    const accessToken = await this.tokenService.generateAccessToken({ sub: user.id, version: user.tokenVersion });
+    const accessToken = await this.tokenService.generateAccessToken({
+      sub: user.id,
+      version: user.tokenVersion,
+    });
     const refreshToken = await this.tokenService.generateRefreshToken();
     return {
       accessToken,

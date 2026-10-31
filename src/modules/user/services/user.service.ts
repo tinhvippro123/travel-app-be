@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  ConflictException,
-} from '@nestjs/common';
-import * as bcrypt from 'bcryptjs';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/user.entity.js';
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
@@ -16,7 +11,7 @@ import { IUserRepository } from '../interfaces/user-repository.interface.js';
  */
 @Injectable()
 export class UserService implements IUserService {
-  constructor(private readonly userRepository: IUserRepository) { }
+  constructor(private readonly userRepository: IUserRepository) {}
 
   async existsByEmail(email: string): Promise<boolean> {
     return this.userRepository.existsByEmail(email);

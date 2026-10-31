@@ -6,7 +6,7 @@ import { IOtpDeliveryService } from '../interfaces/otp.delivery.interface.js';
 export class OtpDeliveryService implements IOtpDeliveryService {
   private readonly logger = new Logger(OtpDeliveryService.name);
 
-  constructor(private readonly mailService: MailService) { }
+  constructor(private readonly mailService: MailService) {}
 
   async sendOtp(target: string, otp: string): Promise<void> {
     const subject = 'Mã xác thực OTP của bạn';

@@ -12,15 +12,14 @@ import { ApiResponseDto } from '../dto/api-response.dto.js';
  * thành format { success, message, data, timestamp }.
  */
 @Injectable()
-export class TransformInterceptor<T>
-  implements NestInterceptor<T, ApiResponseDto<T>>
-{
+export class TransformInterceptor<T> implements NestInterceptor<
+  T,
+  ApiResponseDto<T>
+> {
   intercept(
     _context: ExecutionContext,
-    next: CallHandler,
+    next: CallHandler<T>,
   ): Observable<ApiResponseDto<T>> {
-    return next.handle().pipe(
-      map((data) => ApiResponseDto.ok(data)),
-    );
+    return next.handle().pipe(map((data) => ApiResponseDto.ok(data)));
   }
 }

@@ -14,12 +14,15 @@ export class OtpService implements IOtpService {
     private readonly otpRepository: IOtpRepository,
     private readonly otpGenerator: IOtpGenerator,
     private readonly otpDeliveryService: IOtpDeliveryService,
-  ) { }
+  ) {}
 
   /**
    * Tạo OTP, lưu vào Redis và gửi qua DeliveryService
    */
-  async sendOtp(target: string, type: OtpType = OtpType.REGISTER): Promise<void> {
+  async sendOtp(
+    target: string,
+    type: OtpType = OtpType.REGISTER,
+  ): Promise<void> {
     const code = this.otpGenerator.generate(6);
 
     const ttlSeconds = this.OTP_EXPIRY_MINUTES * 60;
@@ -29,13 +32,19 @@ export class OtpService implements IOtpService {
     // 4. Gửi mã OTP qua email hoặc SMS
     await this.otpDeliveryService.sendOtp(target, code, { type });
 
-    this.logger.log(`Generated and dispatched OTP to ${target} (type: ${type})`);
+    this.logger.log(
+      `Generated and dispatched OTP to ${target} (type: ${type})`,
+    );
   }
 
   /**
    * Xác minh mã OTP hợp lệ và xóa khỏi Redis sau khi sử dụng thành công
    */
-  async verifyOtp(target: string, code: string, type: OtpType = OtpType.REGISTER): Promise<boolean> {
+  async verifyOtp(
+    target: string,
+    code: string,
+    type: OtpType = OtpType.REGISTER,
+  ): Promise<boolean> {
     const record = await this.otpRepository.findOtp(target, type);
 
     if (!record) {

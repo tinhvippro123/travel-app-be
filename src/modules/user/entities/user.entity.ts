@@ -1,4 +1,4 @@
-import { Entity, Column, Index } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { AbstractEntity } from '../../../common/entities/base.entity.js';
 import { UserRole, AccountStatus } from '../../../common/enums/index.js';
 
@@ -22,6 +22,10 @@ export class User extends AbstractEntity {
   @Column({ name: 'token_version', default: 0 })
   tokenVersion: number;
 
-  @Column({ name: 'account_status', enum: AccountStatus, default: AccountStatus.ACTIVE })
+  @Column({
+    name: 'account_status',
+    enum: AccountStatus,
+    default: AccountStatus.ACTIVE,
+  })
   accountStatus: AccountStatus;
 }

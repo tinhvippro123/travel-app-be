@@ -13,7 +13,13 @@ export class Tour extends AbstractEntity {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @Column({ name: 'discount_price', type: 'decimal', precision: 10, scale: 2, nullable: true })
+  @Column({
+    name: 'discount_price',
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    nullable: true,
+  })
   discountPrice?: number;
 
   @Column()
