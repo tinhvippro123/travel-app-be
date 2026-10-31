@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Post,
   Put,
   Delete,
   Body,
@@ -9,7 +8,6 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { IUserService } from '../interfaces/user-service.interface.js';
-import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
 
 @Controller('users')
@@ -26,16 +24,8 @@ export class UserController {
     return this.userService.findById(id);
   }
 
-  @Post()
-  create(@Body() dto: CreateUserDto) {
-    return this.userService.create(dto);
-  }
-
   @Put(':id')
-  update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() dto: UpdateUserDto,
-  ) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateUserDto) {
     return this.userService.update(id, dto);
   }
 
